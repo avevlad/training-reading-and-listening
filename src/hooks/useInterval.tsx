@@ -13,9 +13,7 @@ export default function useInterval(callback: CallbackFunction, delay: any) {
   // Set up the interval.
   useEffect(() => {
     function tick() {
-      if (savedCallback.current !== null) {
-        savedCallback.current();
-      }
+      savedCallback.current();
     }
 
     if (delay !== null) {
