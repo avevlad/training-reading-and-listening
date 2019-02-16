@@ -2,17 +2,17 @@ import React from 'react';
 import { useActions, useStore, Actions, State } from 'easy-peasy';
 import { IStore } from '../../store';
 import useInterval from '../../hooks/useInterval';
-import youtube from '../../hooks/youtube';
+import useYoutube from '../../hooks/useYoutube';
 
-function Subtitles() {
+function Tasks() {
   const items = useStore((state: State<IStore>) => state.subtitles.items);
   const add = useActions((state: Actions<IStore>) => state.subtitles.add);
-  const [video, controls, state] = youtube("DyUU88FTmr8");
+  const [video, controls, state] = useYoutube("DyUU88FTmr8");
 
-  const [video2] = youtube("D2qO5nMOM5U");
+  const [video2] = useYoutube("D2qO5nMOM5U");
 
   useInterval(() => {
-    add(String(new Date()));
+    // add(String(new Date()));
     if (state === 1) {
       // controls!.pauseVideo();
     } else {
@@ -33,4 +33,4 @@ function Subtitles() {
   )
 }
 
-export default Subtitles;
+export default Tasks;

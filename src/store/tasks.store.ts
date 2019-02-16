@@ -1,17 +1,29 @@
 import { Action } from 'easy-peasy';
 
+enum TaskSource {
+  YOUTUBE = 'youtube',
+  AUDIO = 'audio',
+}
+
+interface Task {
+  source: TaskSource,
+  plainSubtitles: string,
+}
+
 interface ISubtitlesState {
-  items: string[],
+  items: Task[],
 }
 
 interface ISubtitlesActions {
-  add: Action<ISubtitlesState, string>,
+  add: Action<ISubtitlesState, Task>,
 }
 
 export type ISubtitlesStore = ISubtitlesState & ISubtitlesActions;
 
+// export const TaskSource = {}
+
 const store: ISubtitlesStore = {
-  items: ['Install easy-peasy', 'Build app', 'Profit'],
+  items: [],
   add: (state, payload) => {
     state.items.push(payload)
   }

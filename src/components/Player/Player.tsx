@@ -1,9 +1,9 @@
 import React from 'react';
 
-function Main() {
+function Player() {
   return (
     <div>123</div>
   )
 }
 
-export default Main;
+export default Player;

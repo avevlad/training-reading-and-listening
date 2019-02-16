@@ -53,7 +53,7 @@ const BuildYTPlayer = (options: BuildTYOptions): any => {
 
 let counter = 0;
 
-export default function youtube(videoId: string): [ReactNode, YT.Player | null, YT.PlayerState] {
+export default function useYoutube(videoId: string): [ReactNode, YT.Player | null, YT.PlayerState] {
   const [player, setPlayer] = useState<YT.Player | null>(null);
   const [state, setState] = useState<YT.PlayerState>(-1);
   counter++;
