@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/training-reading-and-listening/static/js/2.39f81c51.chunk.js"
   },
   {
-    "revision": "afa099ec7fe2ffee3bb973503152a62b",
+    "revision": "dd10ddb4c8ef5308120bbbf0da71b2b8",
     "url": "/training-reading-and-listening/index.html"
   }
 ];
