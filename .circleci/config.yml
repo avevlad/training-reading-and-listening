@@ -48,8 +48,8 @@ jobs:
       - run: ls
       - run: ls build
       - persist_to_workspace:
-          root: build
-          paths: html
+          root: .
+          paths: build
 
 
   gh-pages-deploy:
@@ -79,7 +79,7 @@ jobs:
           command: ls build && ls src
       - run:
           name: Deploy to gh-pages branch
-          command: gh-pages --dotfiles --message "[skip ci] Updates" --dist build/html
+          command: gh-pages --dotfiles --message "[skip ci] Updates" --dist build
 
 workflows:
   version: 2
