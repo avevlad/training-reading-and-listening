@@ -69,6 +69,9 @@ jobs:
             - "63:e2:cb:4d:af:38:ba:b9:f4:49:9c:2b:de:08:54:c5"
       - run:
           name: Deploy to gh-pages branch
+          command: ls
+      - run:
+          name: Deploy to gh-pages branch
           command: gh-pages --dotfiles --message "[skip ci] Updates" --dist build
 
 workflows:
