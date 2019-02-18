@@ -49,7 +49,6 @@ jobs:
       - run: ls build
       - persist_to_workspace:
           root: .
-          paths: build
 
 
   gh-pages-deploy:
