@@ -2,6 +2,7 @@
   "name": "training-listening",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://avevlad.github.io/training-reading-and-listening",
   "dependencies": {
     "@blueprintjs/core": "^3.13.0",
     "@types/jest": "24.0.5",
