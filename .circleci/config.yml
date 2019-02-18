@@ -1,3 +1,4 @@
+
 version: 2
 jobs:
   build:
@@ -25,3 +26,22 @@ jobs:
 
       # run tests!
       - run: npm test
+  gh-pages-deploy:
+    docker:
+      - image: circleci/node
+    steps:
+      - checkout
+      - attach_workspace:
+          at: branch
+      - run:
+          name: Install and configure dependencies
+          command: |
+            npm install -g --silent gh-pages@2.0.1
+            git config user.email "vlad.open.source@gmail.com"
+            git config user.name "avevlad"
+      - add_ssh_keys:
+          fingerprints:
+            - "63:e2:cb:4d:af:38:ba:b9:f4:49:9c:2b:de:08:54:c5"
+      - run:
+          name: Deploy to gh-pages branch
+          command: gh-pages --dotfiles --message "[skip ci] Updates" --dist build
