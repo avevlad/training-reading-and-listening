@@ -72,7 +72,7 @@ jobs:
           command: ls
       - run:
           name: ls build
-          command: ls build
+          command: ls build && ls src
       - run:
           name: Deploy to gh-pages branch
           command: gh-pages --dotfiles --message "[skip ci] Updates" --dist build
