@@ -1,11 +1,20 @@
+import { Action } from "easy-peasy";
+
 interface IAppState {
+  isOpenListModal: boolean,
 }
 
-interface IAppActions {
+export interface IAppActions {
+  setIsOpenListModal: Action<IAppState, boolean>,
 }
 
 export type IAppStore = IAppState & IAppActions;
 
-const store: IAppStore = {};
+const store: IAppStore = {
+  isOpenListModal: true,
+  setIsOpenListModal: (state, payload) => {
+    state.isOpenListModal = payload
+  }
+};
 
 export default store;

@@ -1,9 +1,12 @@
-import subtitles, { ISubtitlesStore } from './tasks.store';
+import app, { IAppStore } from './app.store';
+import tasks, { ITasksStore } from './tasks.store';
 
 export interface IStore {
-  subtitles: ISubtitlesStore
+  app: IAppStore
+  tasks: ITasksStore
 }
 
 export default {
-  subtitles,
+  app,
+  tasks,
 }

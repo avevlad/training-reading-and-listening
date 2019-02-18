@@ -2,7 +2,13 @@ import React from 'react';
 
 function Player() {
   return (
-    <div>123</div>
+    <div>
+      <h1>kek</h1>
+      <h1>kek</h1>
+      <h1>kek</h1>
+      <h1>kek</h1>
+      <h1>kek31</h1>
+    </div>
   )
 }
 
