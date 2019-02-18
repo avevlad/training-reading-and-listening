@@ -47,6 +47,10 @@ jobs:
       - run: npm run build
       - run: ls
       - run: ls build
+      - persist_to_workspace:
+          root: build
+          paths: html
+
 
   gh-pages-deploy:
     docker:
@@ -75,7 +79,7 @@ jobs:
           command: ls build && ls src
       - run:
           name: Deploy to gh-pages branch
-          command: gh-pages --dotfiles --message "[skip ci] Updates" --dist src
+          command: gh-pages --dotfiles --message "[skip ci] Updates" --dist build/html
 
 workflows:
   version: 2
