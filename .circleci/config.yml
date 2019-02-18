@@ -57,10 +57,13 @@ jobs:
           at: branch
       - run:
           name: Install and configure dependencies
-          command: |
-            npm install -g --silent gh-pages@2.0.1
-            git config user.email "vlad.open.source@gmail.com"
-            git config user.name "avevlad"
+          command: npm install -g --silent gh-pages@2.0.1
+      - run:
+          name: Install and configure dependencies
+          command: git config user.name "avevlad"
+      - run:
+          name: Install and configure dependencies
+          command: git config user.email "vlad.open.source@gmail.com"
       - add_ssh_keys:
           fingerprints:
             - "63:e2:cb:4d:af:38:ba:b9:f4:49:9c:2b:de:08:54:c5"
