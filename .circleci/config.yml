@@ -50,7 +50,7 @@ jobs:
 
   gh-pages-deploy:
     docker:
-      - image: circleci/node
+      - image: node:8.10.0
     steps:
       - checkout
       - attach_workspace:
