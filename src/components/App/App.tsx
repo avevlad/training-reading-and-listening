@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import { StoreProvider, createStore } from 'easy-peasy';
 import plainStore, { IStore } from "../../store";
 import Main from "../Main/Main";
+import {FocusStyleManager} from "@blueprintjs/core";
 
 import '../../../node_modules/@blueprintjs/core/lib/css/blueprint.css';
 import './App.css';
+
+FocusStyleManager.onlyShowFocusOnTabs();
 
 const store = createStore<IStore>(plainStore);
 

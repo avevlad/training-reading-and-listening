@@ -1,6 +1,7 @@
 import range from 'lodash/range';
+import axios from 'axios';
 import { Action, listen, Listen, thunk, Thunk } from 'easy-peasy';
-import { func } from "prop-types";
+import defaultTaskList from "../misc/default-task.js";
 
 enum TaskSource {
   YOUTUBE = 'youtube',
@@ -16,14 +17,17 @@ interface Task {
 
 interface ITasksState {
   items: Task[],
+  isFetching: boolean,
   listeners: Listen<ITasksActions>;
 }
 
 interface ITasksActions {
   add: Action<ITasksState, Task>,
   delete: Action<ITasksState, number>,
+  setItems: Action<ITasksState, Task[]>,
+  setFetching: Action<ITasksState, boolean>,
   syncWithLocalstorage: Action<ITasksState>;
-  fetch: Thunk<ITasksState>;
+  fetch: Thunk<ITasksActions>;
 }
 
 export type ITasksStore = ITasksState & ITasksActions;
@@ -37,9 +41,9 @@ const defaultItems = range(1, 10).map((__, i): Task => {
   }
 });
 
-
 const store: ITasksStore = {
-  items: defaultItems,
+  items: [],
+  isFetching: true,
   add: (state, payload) => {
     state.items.push(payload)
   },
@@ -47,11 +51,31 @@ const store: ITasksStore = {
     let index = state.items.findIndex(__ => __.id === payload);
     state.items.splice(index, 1)
   },
-  // setItems: () => {
-  //
-  // },
-  fetch: thunk(async (actions, payload) => {
-    console.log("actions = ", actions);
+  setItems: (state, payload) => {
+    state.items = payload;
+  },
+  setFetching: (state, payload) => {
+    state.isFetching = payload;
+  },
+  fetch: thunk(async (actions) => {
+    actions.setFetching(true);
+    const raw = localStorage.getItem("app_items");
+    if (raw) {
+      const tasks = JSON.parse(raw);
+      actions.setItems(tasks);
+      actions.setFetching(false);
+      return;
+    }
+
+    for (let i = 0; i < defaultTaskList.length; i++) {
+      const defaultTaskListElement = defaultTaskList[i];
+      const res = await axios.get(`/${defaultTaskListElement.subtitle}`);
+      console.log("res = ", res);
+      console.log("defaultTaskListElement = ", defaultTaskListElement);
+    }
+
+    // actions.setItems(defaultItems);
+    // actions.setFetching(false);
   }),
   syncWithLocalstorage: (state) => {
     localStorage.setItem("app_items", JSON.stringify(state.items));
