@@ -35,11 +35,13 @@ export function Tasks() {
 
   function renderTableList() {
     return tasksState.items.map((item, i) => {
+      const img = `https://i.ytimg.com/vi/${item.url}/hqdefault.jpg`;
+      const link = `https://youtu.be/${item.url}`;
       return (
         <tr onClick={handleTableRowClick} key={i}>
           <td style={{width: 120, textAlign: 'center'}}>
-            <a href="https://i.ytimg.com/vi/r-EiyrDgLks/hqdefault.jpg" target="_blank">
-              <img className={styles.image} src="https://i.ytimg.com/vi/r-EiyrDgLks/hqdefault.jpg" alt=""/>
+            <a href={link} target="_blank">
+              <img className={styles.image} src={img} alt=""/>
             </a>
           </td>
           <td>

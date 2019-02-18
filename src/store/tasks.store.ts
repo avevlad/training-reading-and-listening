@@ -1,7 +1,7 @@
-import range from 'lodash/range';
 import axios from 'axios';
 import { Action, listen, Listen, thunk, Thunk } from 'easy-peasy';
 import defaultTaskList from "../misc/default-task.js";
+import parseYoutubeUrl from "../utils/parse-youtube-url";
 
 enum TaskSource {
   YOUTUBE = 'youtube',
@@ -32,15 +32,6 @@ interface ITasksActions {
 
 export type ITasksStore = ITasksState & ITasksActions;
 
-const defaultItems = range(1, 10).map((__, i): Task => {
-  return {
-    id: __,
-    url: 'url',
-    source: TaskSource.AUDIO,
-    plainSubtitles: 'plainSubtitles',
-  }
-});
-
 const store: ITasksStore = {
   items: [],
   isFetching: true,
@@ -67,15 +58,23 @@ const store: ITasksStore = {
       return;
     }
 
+    const defaultTasks = [];
+
     for (let i = 0; i < defaultTaskList.length; i++) {
       const defaultTaskListElement = defaultTaskList[i];
       const res = await axios.get(`/${defaultTaskListElement.subtitle}`);
-      console.log("res = ", res);
-      console.log("defaultTaskListElement = ", defaultTaskListElement);
+      const t: Task = {
+        id: i,
+        plainSubtitles: res.data,
+        source: TaskSource.YOUTUBE,
+        url: parseYoutubeUrl(defaultTaskListElement.link),
+      };
+      defaultTasks.push(t);
     }
 
-    // actions.setItems(defaultItems);
-    // actions.setFetching(false);
+    actions.setItems(defaultTasks);
+    actions.syncWithLocalstorage(null);
+    actions.setFetching(false);
   }),
   syncWithLocalstorage: (state) => {
     localStorage.setItem("app_items", JSON.stringify(state.items));
