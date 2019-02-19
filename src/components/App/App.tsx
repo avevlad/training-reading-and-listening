@@ -18,9 +18,10 @@ const store = createStore<IStore>(plainStore);
 
 class App extends Component {
   render() {
+    console.log("process.env.PUBLIC_URL = ", process.env.PUBLIC_URL);
     return (
       <StoreProvider store={store}>
-        <Router>
+        <Router basename={process.env.PUBLIC_URL}>
           <div>
             <Route exact path="/" component={Home}/>
             <Route path="/play/:id" component={Player}/>
