@@ -3,20 +3,19 @@ import { Action, listen, Listen, thunk, Thunk } from 'easy-peasy';
 import defaultTaskList from "../misc/default-task.js";
 import parseYoutubeUrl from "../utils/parse-youtube-url";
 
-enum TaskSource {
+export enum TaskSource {
   YOUTUBE = 'youtube',
   AUDIO = 'audio',
 }
 
-
-interface Task {
+export interface Task {
   id: number,
   url: string,
   source: TaskSource,
   plainSubtitles: string,
 }
 
-interface ITasksState {
+export interface ITasksState {
   items: Task[],
   isFetching: boolean,
   listeners: Listen<ITasksActions>;

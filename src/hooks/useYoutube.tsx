@@ -66,9 +66,7 @@ function useYoutube(videoId: string): [ReactNode, YT.Player | null, YT.PlayerSta
   const element = !isEmpty(videoId) && <div id={htmlId}/>;
 
   useEffect(() => {
-    console.log("effect");
-    if (!videoId) return;
-
+    if (isEmpty(videoId)) return;
     const opt = {
       id: htmlId,
       videoId,
@@ -90,7 +88,7 @@ function useYoutube(videoId: string): [ReactNode, YT.Player | null, YT.PlayerSta
 
     if (!player) {
       load();
-    } else  {
+    } else {
       player.cueVideoById(videoId);
     }
 
