@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../utils/axios';
 import { Action, listen, Listen, thunk, Thunk } from 'easy-peasy';
 import defaultTaskList from "../misc/default-task.js";
 import parseYoutubeUrl from "../utils/parse-youtube-url";
@@ -7,6 +7,7 @@ enum TaskSource {
   YOUTUBE = 'youtube',
   AUDIO = 'audio',
 }
+
 
 interface Task {
   id: number,

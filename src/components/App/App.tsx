@@ -18,7 +18,6 @@ const store = createStore<IStore>(plainStore);
 
 class App extends Component {
   render() {
-    console.log("process.env.PUBLIC_URL = ", process.env.PUBLIC_URL);
     return (
       <StoreProvider store={store}>
         <Router basename={process.env.PUBLIC_URL}>
