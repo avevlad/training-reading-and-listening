@@ -5,7 +5,9 @@ import useYoutube from "../../hooks/useYoutube";
 import { IStore } from "../../store";
 import styles from "./Tasks.module.css";
 
-export function Tasks() {
+interface TasksProps {}
+
+export default function Tasks(props: TasksProps) {
   const tasksState = useStore((s: State<IStore>) => s.tasks);
   const isOpenListModal = useStore((s: State<IStore>) => s.app.isOpenListModal);
   const {
@@ -18,13 +20,11 @@ export function Tasks() {
     setIsOpenListModal: a.app.setIsOpenListModal,
   }));
 
-  const [video, controls, state] = useYoutube("DyUU88FTmr8");
-
   useEffect(() => {
     onFetch();
   }, []);
 
-  function handleTableRowClick() {
+  function handleTableRowClick(id: number) {
     console.log("handleTableRowClick");
   }
 
@@ -38,7 +38,7 @@ export function Tasks() {
       const img = `https://i.ytimg.com/vi/${item.url}/hqdefault.jpg`;
       const link = `https://youtu.be/${item.url}`;
       return (
-        <tr onClick={handleTableRowClick} key={i}>
+        <tr onClick={()=> handleTableRowClick(item.id)} key={i}>
           <td style={{width: 120, textAlign: 'center'}}>
             <a href={link} target="_blank">
               <img className={styles.image} src={img} alt=""/>
@@ -85,7 +85,6 @@ export function Tasks() {
 
   return (
     <div>
-      {video}
       {renderDialog()}
     </div>
   );

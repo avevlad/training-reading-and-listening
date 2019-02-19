@@ -1,5 +1,4 @@
-import React, { ReactNode, useState, useEffect } from "react";
-import isEmpty from "lodash/isEmpty";
+import React, { ReactNode, useState, useEffect, useMemo } from "react";
 
 declare global {
   interface Window {
@@ -14,8 +13,6 @@ interface BuildTYOptions {
   events: any,
   playerVars: any,
 }
-
-const buildYId = (id: string) => `youtube-${id}`;
 
 const YTScriptLoad = new Promise(res => {
   const tag = document.createElement('script');
@@ -51,16 +48,25 @@ const BuildYTPlayer = (options: BuildTYOptions): any => {
   })
 };
 
-let counter = 0;
+let idCounter = 0;
 
-export default function useYoutube(videoId: string): [ReactNode, YT.Player | null, YT.PlayerState] {
+function isEmpty(str: string): boolean {
+  return (!str || 0 === str.length);
+}
+
+function uniqueId(prefix: string) {
+  let id = ++idCounter;
+  return String(prefix) + id;
+}
+
+function useYoutube(videoId: string): [ReactNode, YT.Player | null, YT.PlayerState] {
   const [player, setPlayer] = useState<YT.Player | null>(null);
   const [state, setState] = useState<YT.PlayerState>(-1);
-  counter++;
-  const htmlId = `${counter}-${buildYId(videoId)}`;
+  const htmlId = useMemo(() => uniqueId('unq-yt-id-'), []);
   const element = !isEmpty(videoId) && <div id={htmlId}/>;
 
   useEffect(() => {
+    console.log("effect");
     if (!videoId) return;
 
     const opt = {
@@ -84,10 +90,18 @@ export default function useYoutube(videoId: string): [ReactNode, YT.Player | nul
 
     if (!player) {
       load();
+    } else  {
+      player.cueVideoById(videoId);
     }
+
+    return () => {
+      console.log("return");
+    };
 
   }, [videoId]);
 
-
   return [element, player, state];
 }
+
+
+export default useYoutube;

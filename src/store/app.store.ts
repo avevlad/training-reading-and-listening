@@ -11,7 +11,7 @@ export interface IAppActions {
 export type IAppStore = IAppState & IAppActions;
 
 const store: IAppStore = {
-  isOpenListModal: true,
+  isOpenListModal: false,
   setIsOpenListModal: (state, payload) => {
     state.isOpenListModal = payload
   }
