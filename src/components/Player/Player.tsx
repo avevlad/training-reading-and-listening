@@ -30,7 +30,7 @@ function Player(props: PlayerProps) {
   // }, []);
 
   if (!id) {
-    return <Redirect to="/play/id"/>;
+    return <Redirect to="/"/>;
   }
 
   const tasksButton = tasksState.items.map((item) => {

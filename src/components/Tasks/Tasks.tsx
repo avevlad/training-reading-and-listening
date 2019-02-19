@@ -4,12 +4,16 @@ import { useActions, useStore, State, Actions } from "easy-peasy";
 import useYoutube from "../../hooks/useYoutube";
 import { IStore } from "../../store";
 import styles from "./Tasks.module.css";
+import useRouter from "../../hooks/useReactRouter";
 
-interface TasksProps {}
+interface TasksProps {
+}
 
 export default function Tasks(props: TasksProps) {
   const tasksState = useStore((s: State<IStore>) => s.tasks);
   const isOpenListModal = useStore((s: State<IStore>) => s.app.isOpenListModal);
+  const {history} = useRouter();
+
   const {
     onFetch,
     onDelete,
@@ -25,6 +29,7 @@ export default function Tasks(props: TasksProps) {
   }, []);
 
   function handleTableRowClick(id: number) {
+    history.push(`/play/${id}`);
     console.log("handleTableRowClick");
   }
 
@@ -37,15 +42,16 @@ export default function Tasks(props: TasksProps) {
     return tasksState.items.map((item, i) => {
       const img = `https://i.ytimg.com/vi/${item.url}/hqdefault.jpg`;
       const link = `https://youtu.be/${item.url}`;
+
       return (
-        <tr onClick={()=> handleTableRowClick(item.id)} key={i}>
+        <tr onClick={() => handleTableRowClick(item.id)} key={i}>
           <td style={{width: 120, textAlign: 'center'}}>
             <a href={link} target="_blank">
               <img className={styles.image} src={img} alt=""/>
             </a>
           </td>
           <td>
-            <h4>Task # {item.id}</h4>
+            <h4># {item.id}</h4>
           </td>
           <td style={{width: 80, textAlign: 'center', verticalAlign: 'middle'}}>
             <Button intent="danger" icon="delete" onClick={(e: any) => handleDeleteRowClick(e, item.id)}/>
@@ -83,11 +89,7 @@ export default function Tasks(props: TasksProps) {
     );
   }
 
-  return (
-    <div>
-      {renderDialog()}
-    </div>
-  );
+  return renderDialog();
 }
 
 

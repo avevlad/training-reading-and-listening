@@ -25,9 +25,9 @@ class App extends Component {
             <Route exact path="/" component={Home}/>
             <Route path="/play/:id" component={Player}/>
             <Route exact path="/play" component={Player}/>
+            <Tasks/>
           </div>
         </Router>
-        <Tasks/>
       </StoreProvider>
     );
   }
