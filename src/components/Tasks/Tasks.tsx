@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Button, Classes, Dialog, HTMLTable } from "@blueprintjs/core";
 import { useActions, useStore, State, Actions } from "easy-peasy";
-import useYoutube from "../../hooks/useYoutube";
 import { IStore } from "../../store";
 import styles from "./Tasks.module.css";
 import useRouter from "../../hooks/useReactRouter";

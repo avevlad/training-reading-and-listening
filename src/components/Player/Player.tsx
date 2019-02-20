@@ -5,6 +5,7 @@ import useYoutube from "../../hooks/useYoutube";
 import { Redirect } from "react-router";
 import { Link } from "react-router-dom";
 import { get } from 'lodash';
+import { Button } from '@blueprintjs/core';
 
 interface PlayerProps {
   [key: string]: any;
@@ -40,19 +41,42 @@ function Player(props: PlayerProps) {
 
   const videoId = get(currentTask, 'url');
 
-  const [video] = useYoutube(videoId);
+  const {video, player} = useYoutube(videoId, {
+    playerVars: {
+      controls: 1,
+      start: 1,
+      fs: 0,
+      rel: 0,
+      showinfo: 0,
+      // @ts-ignore
+      ecver: 0,
+      disablekb: 1,
+    },
+    events: {
+      onReady: ({target}) => {
+        console.log("player || ", target);
+        target.setVolume(10);
+        // console.log("READY");
+      }
+    },
+  });
 
   const tasksButton = tasksState.items.map((item) => {
     return (
       <li key={item.url}>
-        <Link to={`/play/${item.url}`}>{item.url}</Link>
+        <Link to={`/play/${item.id}`}>{item.url}</Link>
       </li>
     );
   });
 
+  console.log("Player render");
+
 
   return (
     <div>
+      <Button onClick={() => player!.setVolume(70)} text="set vol"/>
+      <Button onClick={() => player!.playVideo()} text="play"/>
+      <Button onClick={() => player!.pauseVideo()} text="pause"/>
       <hr/>
       {video}
       <hr/>

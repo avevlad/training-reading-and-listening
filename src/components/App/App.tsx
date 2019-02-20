@@ -6,11 +6,11 @@ import { FocusStyleManager } from "@blueprintjs/core";
 import { StoreProvider, createStore } from 'easy-peasy';
 import plainStore, { IStore } from "../../store";
 import Player from "../Player/Player";
-import Tasks from "../Tasks/Tasks";
 
 import '../../../node_modules/@blueprintjs/core/lib/css/blueprint.css';
 import './App.css';
 import Home from '../Home/Home';
+import Common from "../Common/Common";
 
 FocusStyleManager.onlyShowFocusOnTabs();
 
@@ -25,7 +25,7 @@ class App extends Component {
             <Route exact path="/" component={Home}/>
             <Route path="/play/:id" component={Player}/>
             <Route exact path="/play" component={Player}/>
-            <Tasks/>
+            <Common/>
           </div>
         </Router>
       </StoreProvider>

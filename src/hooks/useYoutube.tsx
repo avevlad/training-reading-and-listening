@@ -28,13 +28,17 @@ const BuildYTPlayer = (options: BuildTYOptions): any => {
 
   return new Promise(async (resolve, reject) => {
     const YTp: any = await YTScriptLoad;
+    const isExist = document.querySelector(`#${id}`) !== null;
     const finishEvents = {
       ...events,
-      onReady(event: any) {
+      onReady() {
         resolve(player);
-        events.onReady && events.onReady(event);
       },
     };
+
+    if (!isExist) {
+      console.warn(`YouTube hook: div #${id} not found.`);
+    }
 
     const player = new YTp.Player(id, {
       videoId,
@@ -59,30 +63,52 @@ function uniqueId(prefix: string) {
   return String(prefix) + id;
 }
 
-function useYoutube(videoId: string): [ReactNode, YT.Player | null, YT.PlayerState] {
+export interface YoutubeHookProps {
+  playerVars?: YT.PlayerVars,
+  events?: YT.Events,
+}
+
+
+export interface YoutubeHookResult {
+  video: ReactNode,
+  player: YT.Player | null,
+  state: YT.PlayerState,
+}
+
+function useYoutube(videoId: string, props?: YoutubeHookProps): YoutubeHookResult {
   const [player, setPlayer] = useState<YT.Player | null>(null);
   const [state, setState] = useState<YT.PlayerState>(-1);
   const htmlId = useMemo(() => uniqueId('unq-yt-id-'), []);
-  const element = !isEmpty(videoId) && <div id={htmlId}/>;
+
+  const video = !isEmpty(videoId) && <div id={htmlId}/>;
 
   useEffect(() => {
-    if (isEmpty(videoId)) return;
+    if (isEmpty(videoId)) {
+      return;
+    }
+
+    const playerVars = (props && props.playerVars) || {};
+    const events = (props && props.events) || {};
+    // const onStateChange = (props && props.events && props.events.onStateChange);
+
     const opt = {
       id: htmlId,
       videoId,
-      events: {},
-      playerVars: {},
+      playerVars,
     };
 
     async function load() {
       const ytPlayer = await BuildYTPlayer({
         ...opt,
         events: {
-          onStateChange: () => {
+          ...events,
+          onStateChange: (data: YT.OnStateChangeEvent) => {
             setState(ytPlayer.getPlayerState());
+            events.onStateChange && events.onStateChange(data);
           },
         }
       });
+      events.onReady && events.onReady({target: ytPlayer});
       return setPlayer(ytPlayer);
     }
 
@@ -98,7 +124,7 @@ function useYoutube(videoId: string): [ReactNode, YT.Player | null, YT.PlayerSta
 
   }, [videoId]);
 
-  return [element, player, state];
+  return {video, player, state};
 }
 
 
