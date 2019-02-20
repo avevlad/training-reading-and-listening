@@ -4,6 +4,10 @@ export default [
     subtitle: "[DownSub.com] Who I'm Voting for President re_ Casey Neistat.srt",
   },
   {
+    link: "https://www.youtube.com/watch?v=o8NPllzkFhE",
+    subtitle: "[DownSub.com] Who I'm Voting for President re_ Casey Neistat.srt",
+  },
+  {
     link: "https://youtu.be/quJdL9ggETI",
     subtitle: "[DownSub.com] Margaret Gould Stewart_ How giant websites design for you (and a billion others, too).srt",
   },
