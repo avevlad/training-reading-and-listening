@@ -1,4 +1,4 @@
-import React, { ReactNode, useState, useEffect, useMemo } from "react";
+import React, { ReactNode, useState, useEffect, useMemo, useRef } from "react";
 
 declare global {
   interface Window {
@@ -24,7 +24,7 @@ const YTScriptLoad = new Promise(res => {
 
 
 const BuildYTPlayer = (options: BuildTYOptions): any => {
-  const {id, videoId, events, playerVars} = options;
+  const {id, videoId, events, playerVars, ...otherProps} = options;
 
   return new Promise(async (resolve, reject) => {
     const YTp: any = await YTScriptLoad;
@@ -41,9 +41,8 @@ const BuildYTPlayer = (options: BuildTYOptions): any => {
     }
 
     const player = new YTp.Player(id, {
+      ...otherProps,
       videoId,
-      height: '390',
-      width: '640',
       playerVars: playerVars,
       events: finishEvents,
     });
@@ -64,6 +63,8 @@ function uniqueId(prefix: string) {
 }
 
 export interface YoutubeHookProps {
+  width?: string | number;
+  height?: string | number;
   playerVars?: YT.PlayerVars,
   events?: YT.Events,
 }
@@ -75,10 +76,33 @@ export interface YoutubeHookResult {
   state: YT.PlayerState,
 }
 
+type CallbackFunction = () => void;
+
 function useYoutube(videoId: string, props?: YoutubeHookProps): YoutubeHookResult {
   const [player, setPlayer] = useState<YT.Player | null>(null);
   const [state, setState] = useState<YT.PlayerState>(-1);
   const htmlId = useMemo(() => uniqueId('unq-yt-id-'), []);
+  // events
+  const onReady = useRef<CallbackFunction | any>(null);
+  const onStateChange = useRef<CallbackFunction | any>(null);
+  const onPlaybackQualityChange = useRef<CallbackFunction | any>(null);
+  const onPlaybackRateChange = useRef<CallbackFunction | any>(null);
+  const onError = useRef<CallbackFunction | any>(null);
+  const onApiChange = useRef<CallbackFunction | any>(null);
+
+  // Remember the latest callback.
+  useEffect(() => {
+    if (!props) {
+      return;
+    }
+
+    onReady.current = (props.events && props.events.onReady);
+    onStateChange.current = (props.events && props.events.onStateChange);
+    onPlaybackQualityChange.current = (props.events && props.events.onPlaybackQualityChange);
+    onPlaybackRateChange.current = (props.events && props.events.onPlaybackRateChange);
+    onError.current = (props.events && props.events.onError);
+    onApiChange.current = (props.events && props.events.onApiChange);
+  });
 
   const video = !isEmpty(videoId) && <div id={htmlId}/>;
 
@@ -88,27 +112,31 @@ function useYoutube(videoId: string, props?: YoutubeHookProps): YoutubeHookResul
     }
 
     const playerVars = (props && props.playerVars) || {};
-    const events = (props && props.events) || {};
-    // const onStateChange = (props && props.events && props.events.onStateChange);
+    // const events = (props && props.events) || {};
 
     const opt = {
+      width: props!.width,
+      height: props!.height,
       id: htmlId,
       videoId,
       playerVars,
     };
 
+    const finalEvents: YT.Events = {
+      onReady: (__) => onReady.current && onReady.current(__),
+      onStateChange: (__) => onStateChange.current && onStateChange.current(__),
+      onPlaybackQualityChange: (__) => onPlaybackQualityChange.current && onPlaybackQualityChange.current(__),
+      onPlaybackRateChange: (__) => onPlaybackRateChange.current && onPlaybackRateChange.current(__),
+      onError: (__) => onError.current && onError.current(__),
+      onApiChange: (__) => onApiChange.current && onApiChange.current(__),
+    };
+
     async function load() {
       const ytPlayer = await BuildYTPlayer({
         ...opt,
-        events: {
-          ...events,
-          onStateChange: (data: YT.OnStateChangeEvent) => {
-            setState(ytPlayer.getPlayerState());
-            events.onStateChange && events.onStateChange(data);
-          },
-        }
+        events: finalEvents,
       });
-      events.onReady && events.onReady({target: ytPlayer});
+      // events.onReady && events.onReady({target: ytPlayer});
       return setPlayer(ytPlayer);
     }
 
