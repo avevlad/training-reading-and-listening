@@ -14,3 +14,7 @@ code {
   monospace;
 }
 
+
+iframe {
+  pointer-events: none;
+}

@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+}
+
+.SubtitlesDebug {
+  background: #fff;
+  padding: 10px;
+}
+
+.SubtitlesDebugItem {
+  height: 100px;
+  border: 2px solid green;
+}
+
+.SubtitlesDebugTime {
+  display: flex;
+}
+
+.SubtitlesDebugTime > div {
+  flex: 50%;
+}
+
+.SubtitlesDebug pre {
+  white-space: pre-wrap;
+}
