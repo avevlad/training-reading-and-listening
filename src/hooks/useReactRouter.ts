@@ -19,7 +19,6 @@ interface VoidFunction {
 const useRouter: UseRouter = <T = {}>(): RouteComponentProps<T> => {
   const forceUpdate: VoidFunction = useForceUpdate();
   const routerContext: RouteComponentProps<T> = useContext(__RouterContext);
-  console.log("routerContext = ", routerContext);
 
   if (!routerContext) {
     throw new Error('use-react-router may only be used within a react-router context.');
