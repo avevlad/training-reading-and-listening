@@ -24,9 +24,11 @@ export interface ITasksState {
 interface ITasksActions {
   add: Action<ITasksState, Task>,
   delete: Action<ITasksState, number>,
+  deleteAll: Action<ITasksState>,
   setItems: Action<ITasksState, Task[]>,
   setFetching: Action<ITasksState, boolean>,
   syncWithLocalstorage: Action<ITasksState>;
+  clear: Thunk<ITasksActions>;
   fetch: Thunk<ITasksActions>;
 }
 
@@ -42,12 +44,19 @@ const store: ITasksStore = {
     let index = state.items.findIndex(__ => __.id === payload);
     state.items.splice(index, 1)
   },
+  deleteAll: (state) => {
+    state.items = [];
+  },
   setItems: (state, payload) => {
     state.items = payload;
   },
   setFetching: (state, payload) => {
     state.isFetching = payload;
   },
+  clear: thunk(async (actions) => {
+    actions.deleteAll(null);
+    actions.syncWithLocalstorage(null);
+  }),
   fetch: thunk(async (actions) => {
     actions.setFetching(true);
     const raw = localStorage.getItem("app_items");

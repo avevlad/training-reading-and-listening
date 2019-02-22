@@ -1,7 +1,7 @@
 export default [
   {
-    link: "https://www.youtube.com/watch?v=PjTc-EiwHqc",
-    subtitle: "[DownSub.com] Who I'm Voting for President re_ Casey Neistat.srt",
+    link: "https://www.youtube.com/watch?v=XfAMirWVpjQ",
+    subtitle: "[DownSub.com] Do I speak slowly_ [How to understand native English speakers].srt",
   },
   {
     link: "https://www.youtube.com/watch?v=o8NPllzkFhE",

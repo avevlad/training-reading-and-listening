@@ -68,7 +68,7 @@ function Player(props: PlayerProps) {
       start: 1,
       fs: 0,
       rel: 0,
-      // disablekb: 1,
+      disablekb: 1,
       modestbranding: 3,
     },
     // events: {
@@ -102,6 +102,16 @@ function Player(props: PlayerProps) {
     if (!player) return;
     checkAndSeek(true);
   });
+  useMultiKeyPressCallback(['1'], () => handleNumberKey('1'));
+  useMultiKeyPressCallback(['2'], () => handleNumberKey('2'));
+  useMultiKeyPressCallback(['3'], () => handleNumberKey('3'));
+  useMultiKeyPressCallback(['4'], () => handleNumberKey('4'));
+  useMultiKeyPressCallback(['5'], () => handleNumberKey('5'));
+  useMultiKeyPressCallback(['6'], () => handleNumberKey('6'));
+  useMultiKeyPressCallback(['7'], () => handleNumberKey('7'));
+  useMultiKeyPressCallback(['8'], () => handleNumberKey('8'));
+  useMultiKeyPressCallback(['9'], () => handleNumberKey('9'));
+  useMultiKeyPressCallback(['0'], () => handleNumberKey('0'));
 
 
   /**
@@ -215,6 +225,16 @@ function Player(props: PlayerProps) {
         player.seekTo((currentSb.start) / 1000, true);
       }
     }
+  }
+
+  function handleNumberKey(k: string) {
+    const num = Number(k);
+    if (!player) return;
+
+    const x = (player.getDuration() / 10) * num;
+    const seekX = num === 0 ? 0 : x;
+
+    player.seekTo(seekX, true);
   }
 
   function SubtitlesDebug() {
