@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "e4908dc7980c8312f8f7",
+    "revision": "21bbf195fa78cbf4e047",
     "url": "/training-reading-and-listening/static/css/main.7e6c0331.chunk.css"
   },
   {
-    "revision": "e4908dc7980c8312f8f7",
-    "url": "/training-reading-and-listening/static/js/main.e4908dc7.chunk.js"
+    "revision": "21bbf195fa78cbf4e047",
+    "url": "/training-reading-and-listening/static/js/main.21bbf195.chunk.js"
   },
   {
     "revision": "7adf7ab1faaccd82b78b",
@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/training-reading-and-listening/static/js/2.a3c72a75.chunk.js"
   },
   {
-    "revision": "edb4ed25aeec72bd20010d591e76fb35",
+    "revision": "9a01dc42b309d9646e1cfa49c55f587f",
     "url": "/training-reading-and-listening/index.html"
   }
 ];

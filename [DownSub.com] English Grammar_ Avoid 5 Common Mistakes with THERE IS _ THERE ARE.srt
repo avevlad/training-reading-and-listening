@@ -1,0 +1,408 @@
+1
+00:00:00,560 --> 00:00:06,320
+This is a living room. There is a couch. There is a fireplace.
+
+2
+00:00:06,320 --> 00:00:11,100
+There are windows. There are pillows.
+
+3
+00:00:13,220 --> 00:00:18,620
+When you were first learning English, you probably made sentences like these
+
+4
+00:00:18,620 --> 00:00:23,780
+to talk about things you see or things that exist.
+
+5
+00:00:24,620 --> 00:00:27,740
+It seems like an easy topic, right?
+
+6
+00:00:27,740 --> 00:00:34,860
+But as you know, simple things become a bit more complicated as you progress in your studies.
+
+7
+00:00:34,860 --> 00:00:43,620
+In this lesson, let's make sure you're avoiding common mistakes with There is/There are.
+
+8
+00:00:44,820 --> 00:00:46,480
+[title]
+
+9
+00:00:56,100 --> 00:01:01,980
+Don't choose the wrong verb form. Use subject-verb agreement.
+
+10
+00:01:02,420 --> 00:01:07,380
+We use THERE plus a form of BE to talk about things that exist.
+
+11
+00:01:07,380 --> 00:01:12,260
+The focus is on the noun that follows the verb BE.
+
+12
+00:01:13,420 --> 00:01:16,860
+We use a singular verb before a singular noun.
+
+13
+00:01:16,860 --> 00:01:23,720
+For example, this is a living room. There is a couch. There is a fireplace.
+
+14
+00:01:24,160 --> 00:01:27,740
+We use a plural verb before a plural noun.
+
+15
+00:01:27,740 --> 00:01:32,740
+There are windows. There are pillows.
+
+16
+00:01:33,180 --> 00:01:38,020
+If you have an uncountable noun, remember to use a singular verb.
+
+17
+00:01:38,020 --> 00:01:44,960
+There is enough room here for a piano. Usually there is plenty of sunlight.
+
+18
+00:01:45,620 --> 00:01:52,340
+Some words can create confusion. "Variety" is a good example.
+
+19
+00:01:52,420 --> 00:01:57,520
+Even native speakers get confused and wonder if we should write
+
+20
+00:01:57,520 --> 00:02:06,080
+"There is a wide variety of products." OR "There are a wide variety of products."
+
+21
+00:02:06,080 --> 00:02:10,560
+Most dictionaries list "variety" (in "a wide variety") as a singular noun,
+
+22
+00:02:10,600 --> 00:02:17,100
+which leads us to the conclusion that we should say "There is a wide variety of products."
+
+23
+00:02:17,120 --> 00:02:23,000
+But here's another solution: Find an alternative. How about this?
+
+24
+00:02:23,000 --> 00:02:30,040
+The store has a wide variety. They sell many different products.
+
+25
+00:02:34,480 --> 00:02:37,340
+Don't break the rules at the wrong time.
+
+26
+00:02:37,340 --> 00:02:47,880
+You can get away with breaking subject-verb agreement rules, but only in very informal English, especially spoken English.
+
+27
+00:02:49,400 --> 00:02:53,320
+I just said the verb has to agree with the noun that follows.
+
+28
+00:02:53,360 --> 00:03:02,020
+But in American English, it's become somewhat acceptable to use the contraction "There's" before a plural noun.
+
+29
+00:03:02,780 --> 00:03:06,040
+This is my purse, and it's really heavy.
+
+30
+00:03:06,040 --> 00:03:09,560
+There's probably a lot of things in here that I don't need.
+
+31
+00:03:10,120 --> 00:03:12,680
+Now that's grammatically incorrect.
+
+32
+00:03:12,680 --> 00:03:17,160
+I should say, "There are a lot of things that I probably don't need."
+
+33
+00:03:17,160 --> 00:03:20,080
+"Things" - that's a plural noun.
+
+34
+00:03:20,080 --> 00:03:26,280
+But in fast informal English, I can say, "There's a lot of things..."
+
+35
+00:03:26,280 --> 00:03:29,060
+There's a lot of things I probably don't need in here.
+
+36
+00:03:29,060 --> 00:03:32,000
+And my listeners won't mind.
+
+37
+00:03:32,900 --> 00:03:41,680
+But if you're writing formal email or making a business presentation, I don't recommend following this pattern.
+
+38
+00:03:42,360 --> 00:03:47,820
+Follow the rules for subject-verb agreement in more formal situations.
+
+39
+00:03:49,660 --> 00:03:55,440
+Use a singular verb before a series of singular nouns.
+
+40
+00:03:56,360 --> 00:04:00,960
+Here's an example. I'll tell you about the things in this living room.
+
+41
+00:04:00,960 --> 00:04:05,600
+There's a couch a rug, a bookcase, and a piano.
+
+42
+00:04:06,040 --> 00:04:15,440
+Although I listed more than one thing, the item that immediately followed the verb BE was a singular noun: a couch.
+
+43
+00:04:15,540 --> 00:04:18,740
+It sounds more natural to use a singular verb.
+
+44
+00:04:18,740 --> 00:04:20,779
+There is a couch.
+
+45
+00:04:20,779 --> 00:04:28,640
+It's understood that I could repeat "there is" before each item in the list, but I say it only once.
+
+46
+00:04:28,800 --> 00:04:33,460
+There is a couch, a rug, a bookcase, and a piano.
+
+47
+00:04:34,980 --> 00:04:40,060
+Use the word "any" correctly with There is/There are.
+
+48
+00:04:40,060 --> 00:04:44,460
+We use "any" in questions and in negative statements.
+
+49
+00:04:46,400 --> 00:04:50,680
+To ask whether something exists, you don't need "any."
+
+50
+00:04:50,680 --> 00:04:55,680
+For example, I could ask, "Is there a post office nearby?"
+
+51
+00:04:55,860 --> 00:05:03,460
+If you don't care about specific details and you only want a yes-no answer, then you can use "any."
+
+52
+00:05:03,500 --> 00:05:09,200
+For example: Is there any electrician who charges less than $100 an hour?
+
+53
+00:05:10,420 --> 00:05:13,260
+I want to know: Is there one? Anyone?
+
+54
+00:05:13,260 --> 00:05:18,000
+Name anyone for me who charges less than $100 an hour.
+
+55
+00:05:19,080 --> 00:05:24,360
+In a negative statement, I use "any" to express what I have nothing of.
+
+56
+00:05:24,360 --> 00:05:28,260
+For example, there aren't any flowers in this room.
+
+57
+00:05:28,260 --> 00:05:31,960
+There isn't any place to take a long nap.
+
+58
+00:05:32,780 --> 00:05:37,100
+In negative statements, we use "any" with "not."
+
+59
+00:05:37,100 --> 00:05:44,460
+For emphasis, we could simply use "no." As in, there's no place like home.
+
+60
+00:05:46,200 --> 00:05:50,600
+As a writer, don't overuse There is/There are -
+
+61
+00:05:50,600 --> 00:05:53,980
+because then you're writing will sound wordy.
+
+62
+00:05:55,600 --> 00:06:00,640
+Let's take a moment to consider a difference between speaking and writing.
+
+63
+00:06:00,840 --> 00:06:05,320
+We might use "there is/there are" quite a lot in conversation
+
+64
+00:06:05,320 --> 00:06:12,360
+not only to talk about what exists, but also to recall information or facts.
+
+65
+00:06:13,600 --> 00:06:19,940
+For example, my husband might complain that we can't go out to dinner because we don't have a babysitter.
+
+66
+00:06:19,940 --> 00:06:24,240
+But then I can mention a possibility that he might have forgotten.
+
+67
+00:06:24,240 --> 00:06:27,280
+And I want him to recall this fact.
+
+68
+00:06:27,280 --> 00:06:31,900
+I could say, "Well, there's our neighbor. Couldn't we ask her?"
+
+69
+00:06:31,900 --> 00:06:36,060
+I'm presenting this possibility to consider.
+
+70
+00:06:38,240 --> 00:06:40,760
+Now let's switch to a written context.
+
+71
+00:06:40,760 --> 00:06:46,640
+Take a look and tell me if you like how this email sounds.
+
+72
+00:06:46,940 --> 00:06:48,000
+[reads]
+
+73
+00:07:16,420 --> 00:07:19,360
+This could be less wordy, couldn't it?
+
+74
+00:07:19,360 --> 00:07:22,760
+Let's compare this version to another.
+
+75
+00:07:24,120 --> 00:07:25,140
+[reads]
+
+76
+00:07:47,540 --> 00:07:49,800
+Did you note the changes?
+
+77
+00:07:49,800 --> 00:07:56,440
+Do you see how I reduced the number of times I used "There is/There are"?
+
+78
+00:08:00,460 --> 00:08:03,460
+Okay. How well have you been listening?
+
+79
+00:08:03,460 --> 00:08:06,520
+Let's do a quick check.
+
+80
+00:08:06,520 --> 00:08:09,540
+Choose the correct verb.
+
+81
+00:08:23,660 --> 00:08:25,360
+Answers.
+
+82
+00:08:25,360 --> 00:08:30,200
+1. There is a bunch of stuff in the hallway.
+
+83
+00:08:30,240 --> 00:08:33,179
+"Stuff" is an uncountable noun.
+
+84
+00:08:33,179 --> 00:08:38,019
+There is stuff. How much stuff? A lot of stuff. A bunch of stuff.
+
+85
+00:08:38,100 --> 00:08:41,100
+There's a bunch of stuff in the hallway.
+
+86
+00:08:41,100 --> 00:08:50,340
+2. We still have to clean the upstairs. There's the bathroom, the two bedrooms, and the attic.
+
+87
+00:08:50,380 --> 00:08:57,240
+Here we have a string of nouns. The first item is singular: bathroom.
+
+88
+00:08:57,240 --> 00:09:00,300
+So it makes sense to use a singular verb.
+
+89
+00:09:00,300 --> 00:09:05,560
+It's understood that we could use "There is/There are" constructions before each item.
+
+90
+00:09:05,560 --> 00:09:11,920
+But is sounds most natural to use "there is." There's the bathroom...
+
+91
+00:09:12,340 --> 00:09:16,140
+3. Are there any questions at this time?
+
+92
+00:09:16,800 --> 00:09:21,240
+"Questions" is a plural noun. We need a plural verb.
+
+93
+00:09:21,320 --> 00:09:29,340
+And it's a question, so it makes sense to use "any" to ask about the existence of questions.
+
+94
+00:09:30,240 --> 00:09:36,500
+4. There is no substitute for the support of a good friend.
+
+95
+00:09:36,500 --> 00:09:43,940
+Remember in negative statements, we could use "not" + "any" OR the word "no" + the noun.
+
+96
+00:09:43,940 --> 00:09:48,280
+There is no (what?) There is no substitute.
+
+97
+00:09:49,920 --> 00:09:55,540
+Here's a bonus task. How would you rewrite this statement to make it more concise?
+
+98
+00:10:08,160 --> 00:10:11,060
+Here's my suggestion:
+
+99
+00:10:17,300 --> 00:10:19,020
+[reads]
+
+100
+00:10:33,480 --> 00:10:37,880
+Well, there's probably more we can talk about, but we'll end here.
+
+101
+00:10:37,880 --> 00:10:40,240
+I hope you found this useful.
+
+102
+00:10:40,280 --> 00:00:00,000
+Thanks for watching and happy studies!
+
