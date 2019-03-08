@@ -136,7 +136,7 @@ function useYoutube(videoId: string, props?: YoutubeHookProps): YoutubeHookResul
         ...opt,
         events: finalEvents,
       });
-      // events.onReady && events.onReady({target: ytPlayer});
+      onReady.current && onReady.current({target: ytPlayer});
       return setPlayer(ytPlayer);
     }
 

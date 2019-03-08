@@ -72,9 +72,11 @@ const store: ITasksStore = {
     for (let i = 0; i < defaultTaskList.length; i++) {
       const defaultTaskListElement = defaultTaskList[i];
       const res = await axios.get(`/${defaultTaskListElement.subtitle}`);
+      const plainSubtitles = res.data.replace(/(<([^>]+)>)/ig, '');
+
       const t: Task = {
         id: i,
-        plainSubtitles: res.data,
+        plainSubtitles,
         source: TaskSource.YOUTUBE,
         url: parseYoutubeUrl(defaultTaskListElement.link),
       };

@@ -12,19 +12,21 @@ export default function useMultiKeyPressCallback(
     preventDefault: true,
   });
 
-  useEffect(
-    () => {
-      params.current = { targetKeys, callback, preventDefault }
-    },
-    [...targetKeys, callback, preventDefault],
-  );
+  useEffect(() => {
+    params.current = {targetKeys, callback, preventDefault}
+  }, [...targetKeys, callback, preventDefault]);
 
   const downHandler = useCallback((e: KeyboardEvent) => {
     pressedKeysRef.current.add(e.key);
+    console.log("pressedKeysRef = ", pressedKeysRef);
+    console.log("e.key = ", e.key);
+    console.log("params.current.targetKeys = ", params.current.targetKeys);
+    console.log("pressedKeysRef.current = ", pressedKeysRef.current);
     const hasPressedCombo = areKeysPressed(
       params.current.targetKeys,
       Array.from(pressedKeysRef.current),
     );
+    console.log("hasPressedCombo = ", hasPressedCombo);
 
     if (hasPressedCombo && params.current.preventDefault) {
       e.preventDefault();

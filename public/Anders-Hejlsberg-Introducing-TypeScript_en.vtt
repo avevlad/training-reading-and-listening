@@ -1,0 +1,2924 @@
+WEBVTT
+
+00:00:00.460 --> 00:00:04.130
+Hi everyone, I'm Anders Hallberg,
+Technical Fellow in the Developer
+
+00:00:04.180 --> 00:00:07.000
+Division of Microsoft. I'm here
+to talk about a new project of
+
+00:00:07.050 --> 00:00:08.550
+ours called TypeScript.
+
+00:00:09.340 --> 00:00:12.910
+I'm sure you've all noticed that
+JavaScript has gone through
+
+00:00:12.960 --> 00:00:15.780
+explosive growth over the
+last five years or so.
+
+00:00:16.920 --> 00:00:20.740
+We have gotten much better JavaScript
+execution environments
+
+00:00:20.790 --> 00:00:25.060
+like the Chakra engine and IE9 and
+IE10, Google's V8. We've got
+
+00:00:25.110 --> 00:00:29.980
+HTML5 that actually has made the
+UI really be a very full fledged
+
+00:00:30.030 --> 00:00:31.320
+programming platform.
+
+00:00:32.030 --> 00:00:37.980
+But the fact remains that writing
+application scale JavaScript
+
+00:00:38.030 --> 00:00:38.720
+is hard.
+
+00:00:39.260 --> 00:00:44.690
+JavaScript was really never designed
+to be a programming language
+
+00:00:44.740 --> 00:00:48.550
+for big applications. It's a scripting
+language. It doesn't
+
+00:00:48.600 --> 00:00:52.650
+have static typing, but more importantly
+perhaps it lacks some
+
+00:00:52.700 --> 00:00:56.970
+of the structuring mechanisms that
+you need in large applications
+
+00:00:57.020 --> 00:01:00.240
+like classes and modules,
+and perhaps interfaces.
+
+00:01:02.180 --> 00:01:07.090
+So two or three years ago when
+we were trying to decide where
+
+00:01:07.140 --> 00:01:10.140
+to go next with JavaScript development
+tools, we sort of took
+
+00:01:10.190 --> 00:01:14.050
+a look around and we've noticed that
+a lot of people in the industry,
+
+00:01:14.700 --> 00:01:18.690
+in order to write large JavaScript
+apps use tools like maybe
+
+00:01:18.740 --> 00:01:23.530
+Google's GWT or Script Sharp which
+is an open source project
+
+00:01:23.580 --> 00:01:24.560
+that uses C#.
+
+00:01:25.480 --> 00:01:29.750
+Common to those is that they leverage
+mature tooling eco systems
+
+00:01:29.800 --> 00:01:34.690
+like Eclipse or Visual Studio, and
+give you development processes
+
+00:01:34.740 --> 00:01:39.180
+that work for large apps. In that
+sense it's a step forward to
+
+00:01:39.230 --> 00:01:43.400
+use those tools. But the problem
+is that you end up writing your
+
+00:01:43.450 --> 00:01:47.440
+app in a language that isn't JavaScript.
+Whenever you want to
+
+00:01:47.490 --> 00:01:50.950
+leverage anything that happens in
+the JavaScript community you
+
+00:01:51.000 --> 00:01:54.440
+have to first go and capsulate
+it or do whatever. So you're
+
+00:01:54.490 --> 00:01:59.360
+sort of at an arm's length distance
+at all times from the eventual
+
+00:01:59.410 --> 00:02:00.780
+thing that you're targeting.
+
+00:02:02.130 --> 00:02:07.860
+So we felt that, what if we could
+strengthen JavaScript with
+
+00:02:07.910 --> 00:02:11.820
+the things that are missing for large
+scale application development,
+
+00:02:11.870 --> 00:02:15.680
+like static typing, classes, modules.
+
+00:02:16.700 --> 00:02:19.310
+That's what TypeScript is about.
+
+00:02:20.150 --> 00:02:26.120
+It's a language for writing application
+scale JavaScript applications.
+
+00:02:27.820 --> 00:02:29.650
+Maybe in a little more detail,
+
+00:02:30.920 --> 00:02:37.470
+TypeScript is a superset of JavaScript
+that compiles to plain JavaScript.
+
+00:02:37.520 --> 00:02:40.180
+So the thing that you end up running
+when you're using TypeScript
+
+00:02:40.230 --> 00:02:42.110
+is just JavaScript.
+
+00:02:42.870 --> 00:02:48.640
+A compiler and a compile code work
+in any browser on any OS,
+
+00:02:50.080 --> 00:02:52.200
+in any host. The compiler and
+
+00:02:53.790 --> 00:02:56.790
+all of the libraries everything
+is all open source.
+
+00:03:01.120 --> 00:03:04.460
+So TypeScript starts with JavaScript.
+
+00:03:05.670 --> 00:03:08.500
+Basically all JavaScript
+code is TypeScript code.
+
+00:03:09.180 --> 00:03:14.720
+In fact our compiler passes I believe
+close to, if not 100% of
+
+00:03:14.770 --> 00:03:16.760
+the Test 262 Tests.
+
+00:03:17.270 --> 00:03:24.100
+So you can simply copy and paste JavaScript
+code into a TypeScript
+
+00:03:24.150 --> 00:03:24.940
+source file.
+
+00:03:26.160 --> 00:03:31.410
+Also, all JavaScript libraries
+like Node, jQuery, underscore,
+
+00:03:31.460 --> 00:03:36.190
+backbone, prototype, etcetera,
+etcetera. Work directly with
+
+00:03:36.240 --> 00:03:39.870
+TypeScript because it is just JavaScript
+with some additions.
+
+00:03:40.710 --> 00:03:46.300
+Those additions are optional static
+types, classes, and modules.
+
+00:03:47.380 --> 00:03:52.530
+Those really are in my mind the
+underpinnings for application
+
+00:03:52.580 --> 00:03:55.940
+scale development. Those are the
+things that are missing, if
+
+00:03:55.990 --> 00:03:59.160
+you will, when you're writing large
+apps and trying to structure
+
+00:03:59.210 --> 00:04:00.850
+them and maintain them, and so forth.
+
+00:04:01.520 --> 00:04:04.570
+But the beauty of this is
+that it's zero cost.
+
+00:04:05.330 --> 00:04:11.730
+All of those additional features compile
+away in the resulting JavaScript.
+
+00:04:11.780 --> 00:04:15.610
+So there's actually no cost to using
+these classes or modules.
+
+00:04:15.660 --> 00:04:21.430
+They simply compile to normal JavaScript
+idioms. That resulting
+
+00:04:21.480 --> 00:04:27.380
+JavaScript runs, as I said in any
+browser, on any host, on any OS.
+
+00:04:27.430 --> 00:04:31.340
+Alright, so let's take a look at
+what that looks like. I'm going
+
+00:04:31.390 --> 00:04:32.590
+to start with a
+
+00:04:34.420 --> 00:04:37.630
+demo of the TypeScript type system.
+
+00:04:38.320 --> 00:04:39.490
+So let me first
+
+00:04:43.880 --> 00:04:46.670
+paste in a little piece of
+JavaScript code here.
+
+00:04:47.220 --> 00:04:50.500
+This is just plain JavaScript.
+You see a function that takes
+
+00:04:50.550 --> 00:04:54.150
+an argument and assigns to a property
+of that argument, and also
+
+00:04:54.200 --> 00:04:56.810
+produce, computes the sum, and
+
+00:04:58.100 --> 00:04:59.410
+brings up a message box.
+
+00:04:59.460 --> 00:05:05.360
+Now there's something funny about this
+code. It likely wouldn't work.
+
+00:05:05.410 --> 00:05:07.910
+I mean you're putting a property on
+it and you also try to add it.
+
+00:05:07.960 --> 00:05:12.630
+So it seems a little suspect, but
+certainly in here if I hover
+
+00:05:12.680 --> 00:05:16.050
+you can see that TypeScript has
+just determined that X is of
+
+00:05:16.100 --> 00:05:20.040
+type any because it doesn't know
+any better. Any is basically
+
+00:05:20.090 --> 00:05:24.110
+the type that represents any value
+in JavaScript. So anything
+
+00:05:24.160 --> 00:05:27.670
+can go into X. Therefore you can
+access any property on X, you
+
+00:05:27.720 --> 00:05:31.950
+can do any operation on X, and
+you can pass X as an argument
+
+00:05:32.000 --> 00:05:37.130
+to any function you care to. But
+let's say that you intend for
+
+00:05:37.180 --> 00:05:39.740
+X here to be a string, for example.
+
+00:05:40.500 --> 00:05:44.100
+What would you do? Well, there
+are already tools out there if
+
+00:05:44.150 --> 00:05:47.910
+you take for example Google's Closure
+that allows you to add
+
+00:05:49.480 --> 00:05:51.890
+annotations that look like this.
+
+00:05:52.700 --> 00:05:56.750
+Where you say add param and you
+say that X is of type string,
+
+00:05:56.800 --> 00:05:59.590
+and you can also add some
+documentation for X here.
+
+00:06:01.210 --> 00:06:06.440
+If you think about it that's really like
+a type system in comments, right.
+
+00:06:07.570 --> 00:06:10.710
+But it's a little problematic to have
+your type system in comments
+
+00:06:10.760 --> 00:06:15.080
+because it's not particularly
+expressive. You know when you
+
+00:06:15.130 --> 00:06:17.880
+get into structured types and types
+that depend on other types,
+
+00:06:17.930 --> 00:06:21.160
+and so forth, it get's rather unwieldy.
+Also it doesn't look
+
+00:06:21.210 --> 00:06:24.650
+all that great in the code so it
+sort of hampers readability.
+
+00:06:25.620 --> 00:06:26.780
+In TypeScript
+
+00:06:28.280 --> 00:06:32.950
+we instead allow you to simply put
+annotations on your parameter.
+
+00:06:33.000 --> 00:06:36.720
+So here I can annotate X and
+say it's of type string.
+
+00:06:37.300 --> 00:06:41.880
+When I do that you see that things
+start to light up. For example,
+
+00:06:41.930 --> 00:06:45.120
+we're now being told here that there's
+no name property on string.
+
+00:06:45.170 --> 00:06:48.050
+Because we know that string doesn't
+have such a property and
+
+00:06:48.100 --> 00:06:49.480
+therefore we can flag an error.
+
+00:06:50.720 --> 00:06:52.110
+Let me try to get rid of that line.
+
+00:06:53.870 --> 00:06:56.420
+Let's try one of the other primitive
+types like number.
+
+00:06:57.870 --> 00:07:01.000
+Now we see another error. Well,
+first of all we actually see
+
+00:07:01.050 --> 00:07:04.970
+that when I have two X's I get
+another X. So we've inferred
+
+00:07:05.020 --> 00:07:07.280
+that V is a type number.
+
+00:07:08.390 --> 00:07:10.700
+When we try to pass a number
+to alert we get an error.
+
+00:07:10.750 --> 00:07:11.970
+Because if we look at
+
+00:07:13.510 --> 00:07:16.160
+what the prototype for alert is
+it's says that it needs to take
+
+00:07:16.210 --> 00:07:17.010
+a string.
+
+00:07:17.480 --> 00:07:23.850
+Let's try the last of the primitive
+types of JavaScript bool.
+
+00:07:25.910 --> 00:07:29.350
+Now you'll note that we get an error
+on the plus operation because
+
+00:07:29.400 --> 00:07:33.300
+you can't apply operator plus to
+two bools. While technically
+
+00:07:33.350 --> 00:07:36.160
+you can do anything you want in JavaScript,
+but you're not going
+
+00:07:36.210 --> 00:07:38.930
+to get a meaningful result. Therefore
+we flag it. So this is
+
+00:07:38.980 --> 00:07:43.140
+all about in a sense defining a
+semantic subset of JavaScript.
+
+00:07:43.500 --> 00:07:46.550
+The subset that makes sense, because
+JavaScript allows you to
+
+00:07:46.600 --> 00:07:49.700
+do a lot of nonsensical things and
+those are the ones we're trying
+
+00:07:49.750 --> 00:07:50.630
+to catch here.
+
+00:07:53.240 --> 00:07:57.120
+We can also do structure types.
+Let's say that we say X is a
+
+00:07:57.170 --> 00:08:01.380
+string array. Now if I say X subzero.,
+you'll see that we get
+
+00:08:01.430 --> 00:08:05.780
+statement completion with all of
+the methods of string. So we
+
+00:08:05.830 --> 00:08:09.580
+know that we're dealing with an array
+and you can index into it.
+
+00:08:11.490 --> 00:08:15.920
+You could also for example say
+that string is a, oops, X is a
+
+00:08:15.970 --> 00:08:18.740
+function that returns a string.
+
+00:08:19.860 --> 00:08:24.520
+Now if we call X the
+result is a string.
+
+00:08:26.030 --> 00:08:28.180
+But perhaps more importantly
+
+00:08:30.570 --> 00:08:35.160
+you can say that X is a type that
+has a number property and a
+
+00:08:35.210 --> 00:08:40.960
+string property called A and B,
+and now if I dot on X we see
+
+00:08:41.010 --> 00:08:43.240
+that there's an A property
+and a B property.
+
+00:08:44.790 --> 00:08:48.210
+Now we might for example here change
+our code to say return X.A.
+
+00:08:50.990 --> 00:08:54.160
+Now you can see here that types
+can be just written in place.
+
+00:08:54.700 --> 00:08:57.600
+We actually have a structural
+type system in TypeScript.
+
+00:08:57.650 --> 00:09:01.560
+But you can also give types names.
+So we might for example
+
+00:09:03.110 --> 00:09:07.680
+insert a type declaration of an interface,
+which is just a name,
+
+00:09:07.730 --> 00:09:11.020
+the name that we give object
+types, called thing.
+
+00:09:11.910 --> 00:09:16.710
+Now we could modify our code here
+to say that X is of type thing.
+
+00:09:16.760 --> 00:09:19.930
+You'll see that we still get the
+same statement, oops, the same
+
+00:09:19.980 --> 00:09:21.960
+statement completion,
+there's an A and a B.
+
+00:09:23.590 --> 00:09:26.330
+Let's try to write a line of code
+that actually calls this.
+
+00:09:29.390 --> 00:09:30.430
+So we'll pass,
+
+00:09:37.250 --> 00:09:40.550
+so we'll call the process function
+passing in an object literal
+
+00:09:40.600 --> 00:09:41.540
+with an A and a B.
+
+00:09:42.550 --> 00:09:44.930
+Let's look at a few things here.
+Well, first of all you see
+
+00:09:44.980 --> 00:09:48.220
+that we've declared A to be of
+type number. Therefore X.A is
+
+00:09:48.270 --> 00:09:51.410
+of type number and since we return
+a number and we don't have
+
+00:09:51.460 --> 00:09:55.540
+a type annotation on the return
+type of our functions, we infer
+
+00:09:55.590 --> 00:10:00.260
+that process is a function that takes
+a thing and returns a number.
+
+00:10:00.820 --> 00:10:05.090
+Since we're assigning that to N well
+then in turn N is of type number.
+
+00:10:05.140 --> 00:10:08.900
+So you see the types flow here through
+a process called type inference.
+
+00:10:08.950 --> 00:10:13.730
+We can actually infer a whole lot
+of types without you having
+
+00:10:13.780 --> 00:10:14.950
+to write them.
+
+00:10:15.870 --> 00:10:20.480
+The other thing you see is that
+interfaces are structural.
+
+00:10:20.530 --> 00:10:23.830
+So as long as you have the right
+members of the interface, in
+
+00:10:23.880 --> 00:10:27.820
+this case a number, an A and a B property
+of type number and string.
+
+00:10:27.870 --> 00:10:31.450
+Well then you can write an object literal
+that satisfies that interface.
+
+00:10:33.240 --> 00:10:36.710
+Let's try to add an extra
+member here for example, C: bool.
+
+00:10:37.430 --> 00:10:41.720
+We'll see now that we get an error
+down here because we're missing
+
+00:10:42.320 --> 00:10:46.260
+C from our object literal. Of course
+we could go add it and that
+
+00:10:46.310 --> 00:10:49.320
+would make the compiler happy. But
+what we could also do instead
+
+00:10:49.370 --> 00:10:53.910
+is we could say that C is an optional
+property, meaning that
+
+00:10:53.960 --> 00:11:00.250
+you don't have to specify it. It
+is still there, so if we look
+
+00:11:01.140 --> 00:11:04.310
+on X here you'll see that
+there's a C property.
+
+00:11:05.680 --> 00:11:09.260
+But whenever you use it you need to
+first check if it's undefined,
+
+00:11:09.310 --> 00:11:12.280
+because it may have not been given
+to you. If you do give it
+
+00:11:12.330 --> 00:11:16.710
+down here things are of course
+happy. But interestingly, if
+
+00:11:16.760 --> 00:11:20.150
+you give a C property but of the
+wrong type then again that's
+
+00:11:20.200 --> 00:11:24.810
+an error, so if a C is there it
+must be a bool, is really what
+
+00:11:24.860 --> 00:11:25.520
+we've said.
+
+00:11:27.190 --> 00:11:32.920
+Okay, now of course you can also
+have functions in interfaces.
+
+00:11:35.070 --> 00:11:39.090
+Let's add a foo function. Now we'll
+note down here that we now
+
+00:11:39.140 --> 00:11:42.850
+have a foo. We now get statement completion
+of foo takes a string.
+
+00:11:42.900 --> 00:11:46.490
+So I could give it a string and
+it returns a string. So now
+
+00:11:46.540 --> 00:11:50.500
+the compiler has inferred that
+this guy returns string.
+
+00:11:51.770 --> 00:11:52.370
+In fact
+
+00:11:53.610 --> 00:11:54.290
+if I add
+
+00:11:55.500 --> 00:11:58.270
+another argument here
+you'll also note that
+
+00:11:59.490 --> 00:12:02.800
+we complain if you're not passing the
+right arguments to your function.
+
+00:12:03.230 --> 00:12:06.970
+But just like properties you can
+make arguments optional.
+
+00:12:07.240 --> 00:12:11.940
+So in here is now an optional argument.
+Now you can either not
+
+00:12:11.990 --> 00:12:14.480
+give it or give it and we're happy.
+
+00:12:17.400 --> 00:12:22.130
+In fact, in addition to optional parameters
+we also support overloading.
+
+00:12:22.180 --> 00:12:24.790
+So I could declare foo
+
+00:12:28.870 --> 00:12:32.380
+to have two possible ways you can
+call it, either passing in
+
+00:12:32.430 --> 00:12:34.780
+a string in which case it returns
+a string, or you could pass
+
+00:12:34.830 --> 00:12:37.870
+in a number in which case it returns
+a number. Now down here
+
+00:12:37.920 --> 00:12:41.570
+we have one that calls the string
+version. But if you look you'll
+
+00:12:41.620 --> 00:12:45.750
+see that there are now two, there
+are two options here available.
+
+00:12:45.800 --> 00:12:49.280
+I could also pass it a number and
+in that case we now infer that
+
+00:12:49.330 --> 00:12:52.860
+our function returns numbers. So
+we can do overload resolution
+
+00:12:52.910 --> 00:12:54.330
+on this stuff.
+
+00:12:55.400 --> 00:13:02.800
+Okay, of course it's not really
+possible in JavaScript to have
+
+00:13:02.850 --> 00:13:07.080
+multiple implementations of foo.
+There's only one and what we're
+
+00:13:07.130 --> 00:13:11.110
+really just saying here is in that
+implementation it is up to
+
+00:13:11.160 --> 00:13:13.440
+the user to ensure that if you give
+it a string it should return
+
+00:13:13.490 --> 00:13:17.140
+a string, and so forth. So we're not
+actually necessarily enforcing
+
+00:13:17.190 --> 00:13:20.920
+all of this. But we're allowing you
+to write the correct modeling
+
+00:13:20.970 --> 00:13:22.200
+of it.
+
+00:13:25.190 --> 00:13:28.830
+The overloads I just wrote actually
+correspond to this.
+
+00:13:28.880 --> 00:13:31.970
+What we're really saying is there's
+a foo property that has two
+
+00:13:32.020 --> 00:13:35.320
+call signatures, one taking a string,
+and one taking a number.
+
+00:13:36.740 --> 00:13:40.510
+I could also add data properties
+to my foo here. For example,
+
+00:13:40.560 --> 00:13:43.410
+I could say there's also a property
+called data of type any.
+
+00:13:43.460 --> 00:13:48.020
+Now if I use foo, well you'll see
+that it has two overloads and
+
+00:13:48.070 --> 00:13:52.160
+a data property. This is entirely
+possible in JavaScript.
+
+00:13:52.210 --> 00:13:54.850
+You can put properties on function
+objects and that's really
+
+00:13:54.900 --> 00:13:58.100
+what I'm describing here in
+this type declaration.
+
+00:13:59.760 --> 00:14:06.310
+Indeed we really allow you to model
+anything that's possible
+
+00:14:06.360 --> 00:14:09.900
+in JavaScript here. I have now
+said that my thing also has a
+
+00:14:09.950 --> 00:14:12.850
+constructor function that takes a
+string and returns an element.
+
+00:14:12.900 --> 00:14:17.740
+If you index my thing then you
+get dates out of it. So now I
+
+00:14:17.790 --> 00:14:23.900
+might be, for example say new X
+of ABC and then that returns
+
+00:14:23.950 --> 00:14:27.170
+an element. So now I get statement
+completion for element or
+
+00:14:27.220 --> 00:14:31.690
+I could say return X stop zero. and
+now you see that I have dates
+
+00:14:31.740 --> 00:14:36.670
+in my X. Now you're going to go
+that is a very strange object
+
+00:14:36.720 --> 00:14:40.680
+that I've defined here. Indeed this
+would not occur in the wild.
+
+00:14:40.730 --> 00:14:44.430
+But combinations of all of these
+features do occur in the wild
+
+00:14:44.480 --> 00:14:48.920
+and all over the DOM, for example.
+TypeScript basically stays
+
+00:14:48.970 --> 00:14:53.230
+very true to JavaScripts type system
+and just allows you to statically
+
+00:14:53.280 --> 00:14:57.040
+describe anything that goes on
+in JavaScript. That's really
+
+00:14:57.090 --> 00:14:58.420
+what the point is here.
+
+00:15:00.740 --> 00:15:02.570
+Okay, let me
+
+00:15:03.780 --> 00:15:04.850
+next try
+
+00:15:06.470 --> 00:15:11.280
+to show you another little
+example of type inference.
+
+00:15:12.590 --> 00:15:16.830
+Here's another JavaScript function
+that uses a very common pattern
+
+00:15:16.880 --> 00:15:20.040
+where you declare a local variable.
+Then you write a bunch of
+
+00:15:20.090 --> 00:15:23.290
+local functions that close over the
+local variables and you return
+
+00:15:23.340 --> 00:15:26.620
+a little object that has all of those
+local functions as properties.
+
+00:15:26.670 --> 00:15:30.940
+This happens all over the
+place in JavaScript.
+
+00:15:31.740 --> 00:15:34.980
+You can see that from this piece
+of code the only thing that
+
+00:15:35.030 --> 00:15:39.760
+I've added to this over standard
+JavaScript is an annotation
+
+00:15:40.010 --> 00:15:43.180
+here that annotates this argument
+to be of type number.
+
+00:15:43.230 --> 00:15:46.240
+Other than that it's just plain
+JavaScript. Yet from this we
+
+00:15:46.290 --> 00:15:49.390
+can infer a whole bunch of stuff.
+For example, the compiler
+
+00:15:49.440 --> 00:15:53.640
+here has inferred that the return
+statement. Returns an object
+
+00:15:53.690 --> 00:15:57.210
+that has three functions, one call
+clear, one call add, one call
+
+00:15:57.260 --> 00:16:00.770
+result, and it's figured out what
+their types are. So it's also
+
+00:16:00.820 --> 00:16:03.410
+figured out that make accumulator
+is a function that takes no
+
+00:16:03.460 --> 00:16:06.480
+arguments that returns an object
+that has those three functions
+
+00:16:06.530 --> 00:16:09.870
+in it. So it knows everything
+already.
+
+00:16:09.920 --> 00:16:15.310
+I might here then say bar A equals
+make accumulator. Now when
+
+00:16:15.360 --> 00:16:19.040
+I say A., you see that we now know that
+there are those three methods.
+
+00:16:19.090 --> 00:16:22.140
+I can call them; pass a number,
+etcetera, etcetera.
+
+00:16:23.220 --> 00:16:26.510
+So that's in a sense inference going
+in one direction where we
+
+00:16:26.560 --> 00:16:30.230
+infer from your code what the types
+are. But sometimes it goes
+
+00:16:30.280 --> 00:16:32.570
+in the other direction.
+You might for example,
+
+00:16:34.320 --> 00:16:39.300
+somewhere have a declaration of
+an accumulator interface that
+
+00:16:39.350 --> 00:16:41.790
+you are suppose to go implement now.
+
+00:16:42.500 --> 00:16:45.530
+Let's say that this is my function
+that implements it. In that
+
+00:16:45.580 --> 00:16:51.410
+case I would typically say my function
+returns accumulator.
+
+00:16:51.460 --> 00:16:54.740
+Now we check in the other direction.
+So you see no errors show
+
+00:16:54.790 --> 00:16:57.830
+up because this is actually an implementation
+of that interface.
+
+00:16:57.880 --> 00:17:02.820
+But let's say I had mistyped something
+and now we get an error
+
+00:17:02.870 --> 00:17:07.400
+because this isn't of the correct
+type. This is super valuable
+
+00:17:07.450 --> 00:17:10.840
+in JavaScript programming. Imagine
+that you had a 200 line object
+
+00:17:10.890 --> 00:17:13.900
+literal that you're returning here and
+there's something wrong somewhere.
+
+00:17:14.180 --> 00:17:17.510
+But you're just staring at these 200
+lines. Well we will tell you.
+
+00:17:21.640 --> 00:17:26.610
+Okay, another place where that type
+of inference is super useful
+
+00:17:26.660 --> 00:17:30.230
+is when you're writing event handlers.
+So let's say in here
+
+00:17:30.280 --> 00:17:31.230
+I'm writing
+
+00:17:33.270 --> 00:17:40.680
+an on mouse move event handler. So
+equals function of E and then
+
+00:17:40.730 --> 00:17:46.480
+E dot. You'll notice that we know
+what the type of E is here.
+
+00:17:46.530 --> 00:17:50.250
+We know that it's a mouse event and
+it has a client X and a client
+
+00:17:50.300 --> 00:17:53.050
+Y, and so forth. So we can give you
+statement completion on this
+
+00:17:53.100 --> 00:17:55.810
+stuff without you having said
+anything at all really.
+
+00:17:55.860 --> 00:17:59.900
+Because if you hover you see that
+we've inferred that it's a
+
+00:17:59.950 --> 00:18:03.710
+mouse event. The reason we've inferred
+that is that Window declares
+
+00:18:03.760 --> 00:18:05.070
+a mouse event, event.
+
+00:18:06.210 --> 00:18:09.410
+Now we could actually use the ID
+to navigate to that declaration.
+
+00:18:09.460 --> 00:18:13.720
+So we can go to definition on mouse
+move. Now we jump into a
+
+00:18:13.770 --> 00:18:18.860
+file called lib.D.sturb, which is
+the declaration file for the
+
+00:18:18.910 --> 00:18:23.100
+entire DOM and all of JavaScript
+standard runtime libraries,
+
+00:18:23.150 --> 00:18:26.890
+about 8,000 lines of declarations
+in here. These are basically
+
+00:18:26.940 --> 00:18:30.950
+just the interface declarations of
+everything that's in JavaScript.
+
+00:18:31.440 --> 00:18:35.780
+I don't think anyone can memorize
+these 8,000 things, but the
+
+00:18:35.830 --> 00:18:39.540
+compiler can and just present it
+to you whenever you need it.
+
+00:18:39.590 --> 00:18:42.960
+That's what makes this super valuable.
+For example, if we go
+
+00:18:43.010 --> 00:18:46.150
+to mouse event here we can just navigate
+around in here and find
+
+00:18:46.200 --> 00:18:48.850
+the declarations of everything.
+You can even modify this file
+
+00:18:48.900 --> 00:18:52.090
+if you're in a different browser that has
+different additional capabilities.
+
+00:18:54.120 --> 00:18:58.950
+Okay so that's a quick tour through
+the type system. Let me
+
+00:18:59.000 --> 00:19:04.490
+just summarize here. That what TypeScript
+does is it basically
+
+00:19:04.540 --> 00:19:10.430
+formalizes a static type system that describes
+JavaScript's dynamic types.
+
+00:19:11.050 --> 00:19:14.040
+But it describes them at development
+time and then it can offer
+
+00:19:14.090 --> 00:19:16.770
+excellent tooling on top
+of that information.
+
+00:19:17.290 --> 00:19:20.950
+You see that we do a lot of type
+inference and structural typing.
+
+00:19:21.000 --> 00:19:23.750
+It's actually remarkable how few
+type annotations you need to
+
+00:19:23.800 --> 00:19:26.870
+add to your code to get all
+this machinery working.
+
+00:19:26.920 --> 00:19:32.720
+TypeScript works with existing
+JavaScript libraries. You saw
+
+00:19:32.770 --> 00:19:36.780
+that you can write declaration files
+separately from the libraries
+
+00:19:36.830 --> 00:19:40.550
+that you're trying to provide static
+typing for. So things like
+
+00:19:40.600 --> 00:19:44.420
+Node, jQuery, prototype, underscore,
+well some of them we've
+
+00:19:44.470 --> 00:19:47.180
+already written the declaration
+files. But anyone can write
+
+00:19:47.230 --> 00:19:50.750
+these declaration files and once you
+do the whole system lights up.
+
+00:19:51.580 --> 00:19:57.660
+Final thing, this type system is
+not provably type safe. If you
+
+00:19:58.390 --> 00:20:01.770
+talk to the type theorists, but then
+again most type systems aren't.
+
+00:20:01.820 --> 00:20:06.010
+Like C is not provably type safe
+either, but what it allows you
+
+00:20:06.060 --> 00:20:09.670
+to do though is allows you to state
+the intent in your code,
+
+00:20:09.720 --> 00:20:13.370
+and have the tools check it for
+you. But once you compile, all
+
+00:20:13.420 --> 00:20:17.170
+of that goes away and it's just
+JavaScript. It'll do whatever
+
+00:20:17.550 --> 00:20:20.280
+JavaScript would do when you write
+the particular code. So we're
+
+00:20:20.330 --> 00:20:22.500
+just aiding you at development time.
+
+00:20:24.920 --> 00:20:28.810
+Okay, so let's try and take a look
+at some of the other features
+
+00:20:28.860 --> 00:20:34.680
+in TypeScript that allows you to do
+structuring of larger applications.
+
+00:20:34.730 --> 00:20:43.190
+I'm going to go to Chrome and just
+show that TypeScript works
+
+00:20:43.240 --> 00:20:46.920
+in any browser. I'm going to go
+to our playground. A playground
+
+00:20:46.970 --> 00:20:50.000
+is a place where you can type in
+TypeScript code and see the
+
+00:20:50.050 --> 00:20:53.860
+translation into JavaScript. So
+we're going to take a look at
+
+00:20:53.910 --> 00:20:54.630
+that here.
+
+00:20:56.410 --> 00:20:59.940
+I'm going to start by
+typing a class point.
+
+00:21:01.360 --> 00:21:05.870
+Then in my point I'm going to
+declare X: number and Y: number.
+
+00:21:05.920 --> 00:21:10.290
+So two fields X and Y, and then I'm
+going to make myself a point,
+
+00:21:12.140 --> 00:21:13.360
+oops, new point.
+
+00:21:14.730 --> 00:21:19.610
+There and now you'll notice that
+when I type P. I get statement
+
+00:21:19.660 --> 00:21:23.380
+completion on my point. There's
+an X and Y member, so I can say
+
+00:21:23.430 --> 00:21:28.420
+P.X equals ten, and P.Y
+equals 20, for example.
+
+00:21:29.210 --> 00:21:33.060
+If you look at the code you'll see
+that we've just produced idiomatic
+
+00:21:33.110 --> 00:21:36.470
+JavaScript here. We've produced a
+function closure that contains
+
+00:21:36.520 --> 00:21:40.280
+the constructor function and
+that's what we return out.
+
+00:21:40.330 --> 00:21:43.240
+Now, typically you
+would want to have
+
+00:21:44.960 --> 00:21:48.110
+the ability to pass arguments to
+your constructor. For example,
+
+00:21:48.160 --> 00:21:51.910
+you would probably want to say
+give X and Y for my point.
+
+00:21:51.960 --> 00:21:55.450
+You'll note that we complain here
+that we say well this doesn't
+
+00:21:55.500 --> 00:21:58.030
+match the supply parameters. Well
+because we haven't written
+
+00:21:58.080 --> 00:22:02.510
+a constructor yet. But let's
+write one, so constructor of X:
+
+00:22:02.560 --> 00:22:04.890
+number, Y: number.
+
+00:22:06.820 --> 00:22:08.320
+In here we will say this.
+
+00:22:09.370 --> 00:22:12.540
+and again you'll see that we know
+that this has two fields X
+
+00:22:12.590 --> 00:22:16.960
+and Y. So this .X equals
+X, this .Y equals Y.
+
+00:22:18.230 --> 00:22:24.880
+Now this class syntax here is very
+aligned with ECMAScript 6
+
+00:22:24.930 --> 00:22:26.860
+proposal for classes.
+
+00:22:27.700 --> 00:22:30.820
+Of course on top of it we've added
+type annotations. That's what
+
+00:22:30.870 --> 00:22:37.510
+TypeScript adds, but we in all
+of our additional features are
+
+00:22:37.560 --> 00:22:42.740
+working hard to align with ECMAScript
+6, as even as that standard
+
+00:22:42.790 --> 00:22:46.310
+moves things will probably change
+here as well. So you see in
+
+00:22:46.360 --> 00:22:52.560
+here how we now initialize X and
+Y on our object. We can of
+
+00:22:52.610 --> 00:22:55.730
+course also write methods. Let's
+write a distance method that
+
+00:22:55.780 --> 00:23:00.580
+returns the length of the vector
+given by our point.
+
+00:23:01.480 --> 00:23:07.380
+So square root of this .X times
+so this .X plus this .Y
+
+00:23:08.910 --> 00:23:10.430
+times this .Y,
+
+00:23:12.170 --> 00:23:15.880
+like so. Now if we go down here
+you'll see that if I say P.
+
+00:23:15.930 --> 00:23:18.700
+we get statement completion that
+there's a dist function that
+
+00:23:18.750 --> 00:23:22.720
+returns a number. If you look at
+the generated code you'll notice
+
+00:23:22.770 --> 00:23:28.410
+that we initialized properties
+on the instance of point, but
+
+00:23:28.460 --> 00:23:32.470
+we put methods on the prototype,
+a point and that is precisely
+
+00:23:32.520 --> 00:23:35.560
+what ES6's class proposal
+does as well.
+
+00:23:36.350 --> 00:23:41.340
+We actually support Accessors properties
+too. So if you're running
+
+00:23:41.390 --> 00:23:44.740
+in an ECMAScript 5 compatible browser
+you might want dist to
+
+00:23:44.790 --> 00:23:48.150
+be a property instead of a function.
+You can do that just by
+
+00:23:48.200 --> 00:23:51.490
+making it into an accessor and
+you'll see that the generated
+
+00:23:51.540 --> 00:23:54.190
+code then shifts around and all
+of a sudden now it becomes an
+
+00:23:54.240 --> 00:23:58.570
+object.define property of dist.
+You'll notice that in statement
+
+00:23:58.620 --> 00:24:07.570
+completion we now have a distance
+property not a method, there.
+
+00:24:07.620 --> 00:24:12.850
+We also allow you to declare static
+properties, static origin
+
+00:24:12.900 --> 00:24:16.120
+equals new point zero, zero for example.
+
+00:24:20.650 --> 00:24:25.360
+You'll note that in our generated
+JavaScript, static properties
+
+00:24:25.410 --> 00:24:29.250
+go on the constructor function object,
+methods go on the prototype,
+
+00:24:29.550 --> 00:24:32.310
+properties go on the instance. So
+we put everything where it's
+
+00:24:32.360 --> 00:24:36.960
+supposed to go in JavaScript. In
+fact, now if we look you'll
+
+00:24:37.010 --> 00:24:40.230
+see the point now has two members.
+There's the prototype that
+
+00:24:40.280 --> 00:24:43.510
+is on every constructor function
+and there's the origin static
+
+00:24:43.560 --> 00:24:46.580
+member that we just introduced,
+which is itself a point.
+
+00:24:47.090 --> 00:24:50.740
+In fact if you hover over point
+here you'll see that we know
+
+00:24:50.790 --> 00:24:55.200
+the type, point here references
+the constructor function.
+
+00:24:55.250 --> 00:25:00.930
+It has a point prop, an origin property,
+and a calls, a constructor signature.
+
+00:25:01.490 --> 00:25:06.280
+Then point also is a type, the type
+of P. So there are two points
+
+00:25:06.330 --> 00:25:10.630
+in there, a constructor function
+and an instance type. We also
+
+00:25:10.680 --> 00:25:14.580
+support private members.
+Let me try to add a private caller:
+
+00:25:14.630 --> 00:25:15.580
+string here.
+
+00:25:16.190 --> 00:25:19.750
+You'll note then that inside the
+class I now have a caller member
+
+00:25:19.800 --> 00:25:21.740
+of type string. So
+I can say caller =
+
+00:25:23.040 --> 00:25:30.080
+red, but outside the class
+there is no color.
+
+00:25:30.720 --> 00:25:35.980
+So privacy is basically the ability to
+restrict access to certain members.
+
+00:25:36.030 --> 00:25:39.560
+But again this restriction if you
+look at a generated code there's
+
+00:25:39.610 --> 00:25:44.520
+really nothing special about color.
+So this is all about stating
+
+00:25:44.570 --> 00:25:48.450
+and enforcing your intent at development
+time, but producing
+
+00:25:48.500 --> 00:25:52.240
+normal idiomatic JavaScript. So
+there is no notion of private
+
+00:25:52.290 --> 00:25:55.370
+properties in JavaScript and so we
+generate the best we can here.
+
+00:25:55.420 --> 00:25:59.670
+Now with ECMAScript 6 and private
+member, or private names we
+
+00:25:59.720 --> 00:26:02.730
+may be able to do a better job,
+and once that comes online we
+
+00:26:02.780 --> 00:26:05.870
+can retarget or have a compiler
+option to do that.
+
+00:26:07.840 --> 00:26:08.950
+Okay a
+
+00:26:10.260 --> 00:26:13.590
+couple of other nice features you
+notice that this pattern of
+
+00:26:13.640 --> 00:26:17.630
+declaring properties X and Y, and
+then initializing them in a
+
+00:26:17.680 --> 00:26:21.190
+constructor is very, very common.
+We actually have some syntactic
+
+00:26:21.240 --> 00:26:25.450
+sugar that allows you to shorten
+that. So I can get rid of those
+
+00:26:25.500 --> 00:26:31.580
+and then I can just declare automatic properties
+in my constructor arguments.
+
+00:26:31.630 --> 00:26:36.440
+You get the same effect here that
+we automatically declare a
+
+00:26:37.110 --> 00:26:40.010
+property called X and initialize
+it with the X that you gave
+
+00:26:40.060 --> 00:26:45.720
+to the constructor. In fact we support
+for functions and constructors
+
+00:26:45.770 --> 00:26:48.950
+default values, which is another
+ECMAScript 6 feature. So you
+
+00:26:49.000 --> 00:26:52.980
+can give the default value here,
+zero for example. You'll note
+
+00:26:53.030 --> 00:26:58.260
+that we generate code that puts
+that default value into your
+
+00:26:59.130 --> 00:27:03.960
+argument if the values weren't given.
+Now the type checker also
+
+00:27:04.010 --> 00:27:07.960
+knows that it is not an error to
+omit the arguments from the
+
+00:27:08.010 --> 00:27:11.580
+constructor call. Now classes of
+course also support inheritance.
+
+00:27:12.390 --> 00:27:16.950
+Let's try to write a derive
+class, class point
+
+00:27:18.650 --> 00:27:26.680
+3D extends point. Let's just pause
+here because a whole bunch
+
+00:27:26.730 --> 00:27:30.120
+of code got generated for that.
+Let's take a look at that.
+
+00:27:30.170 --> 00:27:33.510
+You see again that we have a point
+3D but since it is a derived
+
+00:27:33.560 --> 00:27:37.500
+class we now pass in a base class
+as a super argument in our
+
+00:27:37.550 --> 00:27:41.200
+function closure. Then we call a
+helper function extends, which
+
+00:27:41.250 --> 00:27:46.040
+we inject into the generator code
+only if you have derived classes.
+
+00:27:46.090 --> 00:27:50.990
+I should say that this is the only
+time we will inject code into
+
+00:27:51.040 --> 00:27:53.980
+your generated JavaScript, other
+than the code that you wrote.
+
+00:27:56.360 --> 00:28:00.060
+Here we then you know do whatever
+gymnastics is necessary to
+
+00:28:00.110 --> 00:28:02.450
+set up the prototype chain.
+
+00:28:03.400 --> 00:28:08.490
+Then automatically we emit a call
+to the base class constructor
+
+00:28:08.540 --> 00:28:11.960
+if you don't actually write a constructor
+yourself. But let's
+
+00:28:12.010 --> 00:28:14.540
+try to write one here where
+we say for example
+
+00:28:20.870 --> 00:28:28.440
+our constructor has, whoop, there,
+I don't think I got that right,
+
+00:28:28.490 --> 00:28:34.510
+did I? Oops, a; there, my constructor
+has an X and a Y and then
+
+00:28:34.560 --> 00:28:38.450
+a public Z member. Then inside
+my constructor let's just call
+
+00:28:38.500 --> 00:28:41.350
+the base class constructor
+like so with a super call.
+
+00:28:42.830 --> 00:28:48.160
+I can also in here put in, for example,
+an override of the dist method.
+
+00:28:48.210 --> 00:28:52.850
+I might save R D = super.dist,
+so called the
+
+00:28:54.220 --> 00:28:57.910
+inherited method. Then return math.sqrt
+
+00:28:59.770 --> 00:29:06.750
+of D x D + this .Z x this
+.Z, for example.
+
+00:29:08.880 --> 00:29:14.770
+So classes with inheritance, let
+me try and show some of the
+
+00:29:14.820 --> 00:29:20.140
+other features that are in here.
+In fact let me just go grab
+
+00:29:20.190 --> 00:29:22.860
+a little code snippet from
+
+00:29:25.390 --> 00:29:27.090
+over here and paste it in.
+
+00:29:28.160 --> 00:29:32.930
+Here's a little class called tracker
+that has one property in
+
+00:29:32.980 --> 00:29:37.290
+it called count. Then it has a method
+that starts it and in the
+
+00:29:37.340 --> 00:29:40.760
+method we just attach an on mouse
+move event handler, where we
+
+00:29:40.810 --> 00:29:43.850
+handle all the mouse moves. For
+every mouse move we increment
+
+00:29:43.900 --> 00:29:47.270
+our counter and write it
+out to the console.
+
+00:29:47.930 --> 00:29:49.290
+Let's try to run this code.
+
+00:29:50.790 --> 00:29:54.170
+Let's try to bring up the F12 tools
+and look at the console window.
+
+00:29:54.430 --> 00:29:56.880
+We'll see that there's something
+going on in here. We're just
+
+00:29:56.930 --> 00:30:00.310
+getting a bunch of NaNs. So
+something went wrong.
+
+00:30:00.360 --> 00:30:05.170
+The thing that went wrong is the
+thing that goes wrong very often
+
+00:30:05.220 --> 00:30:07.950
+in JavaScript, which is you
+have the wrong this.
+
+00:30:08.890 --> 00:30:15.210
+When Window. on mouse move calls
+your event handler it passes
+
+00:30:15.260 --> 00:30:19.770
+the element that you're over as
+the dist pointer. It doesn't
+
+00:30:19.820 --> 00:30:23.590
+pass the place that you were defined.
+
+00:30:24.510 --> 00:30:28.950
+Now if we had actually typed this code
+in we would have discovered that.
+
+00:30:29.000 --> 00:30:34.130
+Because if I hover over this here,
+you'll see that this is of
+
+00:30:34.180 --> 00:30:34.880
+type any.
+
+00:30:35.580 --> 00:30:37.980
+We wouldn't have gotten statement
+completion and whatever.
+
+00:30:38.030 --> 00:30:42.650
+So you know we would have noticed
+but let's say we hadn't.
+
+00:30:43.020 --> 00:30:47.610
+Now this is so common in JavaScript
+that in ECMAScript 6 there's
+
+00:30:47.660 --> 00:30:50.830
+a proposal to introduce what's called
+arrow functions, or also
+
+00:30:50.880 --> 00:30:55.480
+known as lambdas from languages
+like C#, for example.
+
+00:30:55.480 --> 00:30:56.480
+[Laughter]
+
+
+00:30:56.640 --> 00:31:01.280
+And they use the fat arrow syntax.
+So I could instead write
+
+00:31:01.330 --> 00:31:06.640
+my function here or my event handler
+as an E arrow and then the
+
+00:31:06.690 --> 00:31:09.680
+same code. Now the thing that's
+different about arrow functions
+
+00:31:09.730 --> 00:31:12.720
+is that they have lexically scoped
+this, which means they have
+
+00:31:12.770 --> 00:31:16.880
+the same this as their surrounding
+function. The way that you
+
+00:31:16.930 --> 00:31:19.660
+make that work is you have to capture
+that out of this and then
+
+00:31:19.710 --> 00:31:21.050
+reference it inside.
+
+00:31:21.610 --> 00:31:25.340
+People often write = that = this
+and then inside their method
+
+00:31:25.390 --> 00:31:29.120
+they use that. instead of this.
+but you notice that we can just
+
+00:31:29.170 --> 00:31:32.470
+do that automatically for you.
+We can emit that code.
+
+00:31:33.580 --> 00:31:36.620
+Now if I run you'll see
+that my sample now
+
+00:31:37.890 --> 00:31:42.160
+hopefully works, yes. I'm actually
+working on the correct this.
+
+00:31:42.780 --> 00:31:46.570
+If you look at the generator code
+you'll see that we captured
+
+00:31:46.620 --> 00:31:50.120
+the outer this and then rewrote all
+of the references to be that
+
+00:31:50.170 --> 00:31:53.790
+outer this instead. The thing that's
+interesting by the way is
+
+00:31:53.840 --> 00:31:57.180
+that we will only generate that
+if there are references to the
+
+00:31:57.230 --> 00:32:03.060
+outer this, so notice what happens here
+if I get, if I backspace here.
+
+00:32:03.580 --> 00:32:07.320
+It disappears because I'm no longer
+referencing the outer this
+
+00:32:07.370 --> 00:32:10.320
+in my lambda, so we'll only generate
+these closures if we actually
+
+00:32:10.370 --> 00:32:14.690
+need to, to generate them.
+
+00:32:16.070 --> 00:32:20.050
+So that's arrow functions. Another
+feature that we have in TypeScript
+
+00:32:20.100 --> 00:32:24.180
+that's inspired by ECMAScript
+6 is modules. Let me start by
+
+00:32:24.230 --> 00:32:27.960
+showing you what we call internal
+modules, which are modules
+
+00:32:28.010 --> 00:32:32.970
+that are local in a source file.
+I could for example create
+
+00:32:33.020 --> 00:32:38.730
+a module utils and put my tracker
+class into that module, like so.
+
+00:32:38.780 --> 00:32:44.540
+Then I could export my tracker out
+of that module. You'll notice
+
+00:32:44.590 --> 00:32:49.160
+that the code we generate is a
+function closure that contains
+
+00:32:49.210 --> 00:32:55.360
+our class declaration. Then we assign
+all of the exported properties
+
+00:32:55.410 --> 00:33:00.850
+onto the object that represents
+the module. This is very common
+
+00:33:00.900 --> 00:33:06.200
+pattern in JavaScript. Of course
+now you'll see that our tracker
+
+00:33:06.250 --> 00:33:10.150
+isn't there, but it is indeed
+now inside the utils module.
+
+00:33:10.700 --> 00:33:15.250
+I can actually sort of nest arbitrarily,
+well I should mention
+
+00:33:15.300 --> 00:33:19.900
+that modules are open ended. So
+I could write another module
+
+00:33:19.950 --> 00:33:21.900
+utils here with an export = bar
+
+00:33:23.630 --> 00:33:31.040
+greeting = hello, for example. Now
+you'll note that if I say utils.
+
+00:33:31.090 --> 00:33:34.210
+there's now two members on it. There's
+a greeting and a tracker.
+
+00:33:34.260 --> 00:33:37.990
+But imagine that these two modules
+were in separate source files.
+
+00:33:38.040 --> 00:33:41.270
+So modules are in a sense also
+namespaces that are open ended
+
+00:33:41.320 --> 00:33:45.140
+and different source files can contribute
+members to these modules.
+
+00:33:45.190 --> 00:33:48.320
+The code we generate allows
+you to do that.
+
+00:33:48.370 --> 00:33:52.710
+I might also for example
+
+00:33:54.790 --> 00:33:58.270
+deeply nest something. You'll notice
+that we generate then multiple
+
+00:33:58.320 --> 00:34:01.130
+function closures. Now of course
+this thing ends up with a
+
+00:34:02.810 --> 00:34:04.390
+very sort of unwieldy name.
+
+00:34:05.180 --> 00:34:09.290
+But if I hover you'll notice that
+we know that this guys an Acme
+
+00:34:09.340 --> 00:34:10.740
+core utils tracker.
+
+00:34:11.500 --> 00:34:14.230
+I could shorten the name by using
+an import. So I could = say
+
+00:34:14.280 --> 00:34:16.540
+import ACU = Acme.core.,
+
+00:34:18.210 --> 00:34:21.700
+oops, .utils.
+
+00:34:22.410 --> 00:34:28.070
+Then in my reference here just reference
+Acm.tracker, for example.
+
+00:34:28.690 --> 00:34:31.900
+Over here you'll note in the generated
+JavaScript an import is
+
+00:34:31.950 --> 00:34:36.190
+simply just a local variable that
+references that inner module.
+
+00:34:37.560 --> 00:34:41.860
+So that's internal modules. The
+other kind of module we support
+
+00:34:42.350 --> 00:34:44.220
+are external modules.
+
+00:34:45.780 --> 00:34:47.560
+Now to demo those let me,
+
+00:34:50.020 --> 00:34:52.750
+not save that, then
+let me go and grab
+
+00:34:53.960 --> 00:34:56.370
+a blank file called server.ts here.
+
+00:34:57.710 --> 00:35:03.640
+External modules we support two models
+for external modules based
+
+00:35:03.690 --> 00:35:08.020
+either CommonJS modules or AMD
+modules. So CommonJS modules
+
+00:35:08.070 --> 00:35:12.250
+are the types of modules used by
+Node.js, and basically a module
+
+00:35:12.300 --> 00:35:16.020
+in Node or in CommonJS is
+a JavaScript source file.
+
+00:35:16.870 --> 00:35:21.080
+A module loader arranges to load
+that module along with all of
+
+00:35:21.130 --> 00:35:25.530
+its other requirements. Then you can
+export members out of that module.
+
+00:35:25.780 --> 00:35:31.530
+Then there's AMD modules which are
+built on top of CommonJS to
+
+00:35:32.340 --> 00:35:37.540
+provide an asynchronous module definition
+for modules in the browser.
+
+00:35:37.590 --> 00:35:39.980
+We support generating code
+for both of those.
+
+00:35:40.550 --> 00:35:44.010
+Let me show what it looks like. I'm
+going to try to write a little
+
+00:35:44.060 --> 00:35:48.000
+multi-module Node application. I'm
+going to have a server module
+
+00:35:48.050 --> 00:35:51.920
+and a hello module that uses my
+simple server module. So in
+
+00:35:51.970 --> 00:35:55.790
+my Simple Server module
+I'm going to start
+
+00:35:58.960 --> 00:35:59.920
+by referencing
+
+00:36:01.340 --> 00:36:07.610
+the static types for Node.js.
+The way I do that is I
+
+00:36:08.970 --> 00:36:11.590
+just simply put a reference
+in my file.
+
+00:36:12.220 --> 00:36:15.870
+Now I can actually navigate to
+this file. In here you see the
+
+00:36:15.920 --> 00:36:19.470
+static types that are
+declared for Node.js.
+
+00:36:21.090 --> 00:36:25.740
+Including for example, yeah, zlib, HTTP,
+etcetera, etcetera, etcetera.
+
+00:36:25.790 --> 00:36:32.680
+Okay in here I might = then say
+import HTTP = module up HTTP,
+
+00:36:35.000 --> 00:36:42.020
+like so. Now I actually have a reference
+to the HTTP module from Node.
+
+00:36:42.070 --> 00:36:47.250
+Then I might write an exported function,
+export function simple
+
+00:36:47.300 --> 00:36:55.680
+server port:, oops, number,
+message: string.
+
+00:36:57.840 --> 00:37:01.540
+In my Simple Server maybe I'm going
+to do something with HTTP.
+
+00:37:01.590 --> 00:37:05.730
+You see here now we get statement
+completion on the HTTP module
+
+00:37:05.780 --> 00:37:10.930
+and Node. So I can call HTTP.create
+server. It tells me well
+
+00:37:10.980 --> 00:37:14.390
+in Node create server takes
+a call back that
+
+00:37:16.460 --> 00:37:19.380
+requires a request and
+a response parameter.
+
+00:37:21.430 --> 00:37:26.800
+Now in here I can say response.,
+and again you'll see that we
+
+00:37:26.850 --> 00:37:30.120
+have picked up what the types of
+those are from the definition
+
+00:37:30.170 --> 00:37:33.870
+of the create server module. So lots
+of type inference happening
+
+00:37:33.920 --> 00:37:35.820
+here that automatically
+flows the types.
+
+00:37:36.660 --> 00:37:40.050
+Let me just, so you don't have
+to watch me type it here.
+
+00:37:40.100 --> 00:37:44.870
+Let me just paste in the code that
+I want in my server. I simply
+
+00:37:44.920 --> 00:37:47.420
+want to write out a hello
+world message.
+
+00:37:47.470 --> 00:37:52.330
+Then finally I want to start the
+server by calling its listen
+
+00:37:52.380 --> 00:37:54.740
+method, and again here you see we
+get statement completion on that.
+
+00:37:54.790 --> 00:37:59.030
+So we'll just listen on the port
+that we give. Now I have a
+
+00:37:59.080 --> 00:38:02.220
+super simple little module that
+has one function exported in
+
+00:38:02.270 --> 00:38:03.580
+it called simple server.
+
+00:38:04.690 --> 00:38:07.230
+So, next let's try to
+
+00:38:10.040 --> 00:38:12.600
+grab another empty file
+here called hello.
+
+00:38:13.380 --> 00:38:16.520
+Then let's try to use the simple
+server that we just wrote.
+
+00:38:16.570 --> 00:38:22.930
+So I'm = going to say import
+server = module of./server.
+
+00:38:25.890 --> 00:38:30.870
+So now I import the module that I
+just wrote. Then automatically
+
+00:38:30.920 --> 00:38:33.490
+I get statement completion on
+the code that I just wrote.
+
+00:38:33.540 --> 00:38:37.720
+So that has automatically become
+part of my compilation here.
+
+00:38:37.770 --> 00:38:42.710
+Now I can say listen on ports
+1337, and the message is
+
+00:38:44.060 --> 00:38:52.170
+greetings channel 9 for, example. Finally,
+let's just say console.log
+
+00:38:55.290 --> 00:39:05.590
+up listening, there and save that. So
+here we have our two module project.
+
+00:39:05.640 --> 00:39:09.610
+Let's go to the directory where
+I put these files. You'll see
+
+00:39:09.660 --> 00:39:14.310
+that we have hello on server.ts and
+the static typings for Node.
+
+00:39:14.360 --> 00:39:22.010
+We can now use the TypeScript compiler,
+whoops, to compile hello.ts.
+
+00:39:22.950 --> 00:39:26.430
+You'll note here that I don't have
+to give it all of the files.
+
+00:39:26.480 --> 00:39:30.280
+It will automatically figure out the
+dependencies from the imports
+
+00:39:30.330 --> 00:39:32.560
+that I had and a triple/references.
+
+00:39:33.150 --> 00:39:36.000
+So we automatically just, you just
+give us the top file and we
+
+00:39:36.050 --> 00:39:40.330
+figure out what everything is. You'll
+note in here now that we
+
+00:39:40.380 --> 00:39:44.240
+have two JavaScript files, hello.js
+and server.js. We could
+
+00:39:44.290 --> 00:39:48.210
+even look at for example, our hello
+file. You'll note that it
+
+00:39:48.260 --> 00:39:52.160
+is very, very simple to what I type
+my module import has turned
+
+00:39:52.210 --> 00:39:55.420
+into a require, but other than that
+it's the same code. I'm good
+
+00:39:55.470 --> 00:39:58.590
+to go now, I can start my hello app.
+
+00:39:59.470 --> 00:40:00.700
+Now let's go to,
+
+00:40:02.960 --> 00:40:06.510
+let's see local host 1337.
+
+00:40:12.000 --> 00:40:15.680
+Here's our little greeting from
+our little Node server, so very
+
+00:40:15.730 --> 00:40:16.470
+simple stuff.
+
+00:40:17.530 --> 00:40:22.050
+Okay, let me just summarize here.
+
+00:40:22.770 --> 00:40:27.130
+Classes and modules basically are
+the building blocks that allow
+
+00:40:27.180 --> 00:40:31.960
+you to do scalable application development
+in TypeScript, because
+
+00:40:32.010 --> 00:40:36.300
+they enable you to define and maintain
+clear contracts between
+
+00:40:36.350 --> 00:40:40.060
+different parts of your application.
+We're working very hard
+
+00:40:40.110 --> 00:40:43.830
+to align with the emerging standards
+for this stuff. So class,
+
+00:40:43.880 --> 00:40:48.180
+module, arrow function, syntaxes
+are all borrow from the current
+
+00:40:48.230 --> 00:40:51.680
+ECMAScript 6 proposals. We will
+continue to align with that.
+
+00:40:51.730 --> 00:40:55.490
+You saw that we support the popular
+module systems that are already
+
+00:40:55.540 --> 00:40:57.080
+in use in the industry like
+
+00:40:58.800 --> 00:41:06.160
+CommonJS and AMD. Let me now for
+the final little section of
+
+00:41:06.210 --> 00:41:11.850
+demos here, show you some of this
+application scale in action.
+
+00:41:13.160 --> 00:41:18.250
+So we're going to go back to Visual
+Studio here. Let's try to
+
+00:41:18.300 --> 00:41:23.170
+pick up another file.
+
+00:41:25.700 --> 00:41:28.520
+We have one of our samples is
+called Image Board. I'm going
+
+00:41:28.570 --> 00:41:32.610
+to load the main application in
+Image Board here. You'll notice
+
+00:41:32.660 --> 00:41:36.470
+that this is a Node application,
+we reference Node. It also
+
+00:41:36.520 --> 00:41:42.180
+uses MongoDB and it uses Express
+with Node. So there's a database
+
+00:41:42.230 --> 00:41:45.550
+module that I wrote here. I can
+go to definition on that guy.
+
+00:41:45.600 --> 00:41:49.130
+You'll see that my database module
+is a wrapping around Node.
+
+00:41:49.180 --> 00:41:52.550
+So I can go in and actually look
+at the static typings for Node.
+
+00:41:52.600 --> 00:41:55.420
+These are not entirely complete
+yet. This is stuff that's still
+
+00:41:55.470 --> 00:41:58.070
+in flight, but you get the idea.
+
+00:41:58.890 --> 00:42:04.680
+In my database module here you'll
+note that we use the Node APIs.
+
+00:42:04.730 --> 00:42:08.030
+But we also declare some interfaces
+that represent the data entities
+
+00:42:08.080 --> 00:42:11.190
+that I'm storing in my database.
+That actually ends up being
+
+00:42:11.240 --> 00:42:14.280
+very, very convenient. Because now
+whenever I use the entities
+
+00:42:14.330 --> 00:42:17.570
+I just automatically get stickman
+completion on what the properties
+
+00:42:17.620 --> 00:42:21.550
+of those guys are. So we have users,
+boards, images you can see.
+
+00:42:21.600 --> 00:42:25.420
+Then we have some accessor functions
+like get user. That just
+
+00:42:25.470 --> 00:42:29.710
+wraps around the, you know necessary calls
+to put them into MongoDB table.
+
+00:42:29.760 --> 00:42:35.260
+I could actually do a find all
+references on my get user here
+
+00:42:35.310 --> 00:42:39.430
+and see all the places in my app
+that I'm using this method.
+
+00:42:39.480 --> 00:42:41.790
+You'll note that there's the place
+where I declared. But then
+
+00:42:41.840 --> 00:42:45.280
+there are two places in the
+app where I call get user.
+
+00:42:45.330 --> 00:42:49.200
+Let's go to this one here for example.
+You'll note here that
+
+00:42:50.150 --> 00:42:53.410
+we actually are tracking all of these
+different modules. So there's
+
+00:42:53.460 --> 00:42:58.370
+an app module which is actually
+came from Express, the Express
+
+00:42:58.420 --> 00:43:01.170
+module, I'm sorry there's an app
+object which came from Express,
+
+00:43:01.220 --> 00:43:05.150
+and is of type Express server. There's
+request and response parameters
+
+00:43:05.200 --> 00:43:07.380
+that came from Express.
+There's a user
+
+00:43:08.820 --> 00:43:12.930
+parameter that came from the database
+encapsulation that I wrote.
+
+00:43:13.540 --> 00:43:16.470
+In here if I reference user.
+
+00:43:17.350 --> 00:43:20.950
+you'll see that I get statement
+completion on the types that
+
+00:43:21.000 --> 00:43:24.230
+I just wrote in my database encapsulation.
+
+00:43:25.250 --> 00:43:28.340
+Let's try to just look at what
+it looks like to run this guy.
+
+00:43:30.830 --> 00:43:36.900
+So here's the code. We could
+compile it app.ts, here.
+
+00:43:37.920 --> 00:43:41.410
+We'll look, that produced a couple
+of JavaScript files, one for
+
+00:43:41.460 --> 00:43:46.290
+app and one for the database. We
+could then start up MongoDB
+
+00:43:48.180 --> 00:43:53.590
+in a separate process here. Then
+we can start up Node on our app.
+
+00:43:53.640 --> 00:43:57.760
+Then go to Port 3000
+on our local host.
+
+00:44:03.600 --> 00:44:06.850
+Here you see the Image Board example
+and it's basically a little
+
+00:44:06.900 --> 00:44:11.930
+app that allows you to pin up pictures
+and some collections.
+
+00:44:11.980 --> 00:44:15.450
+You can have different users and they
+can each pin up different stuff.
+
+00:44:15.500 --> 00:44:19.430
+Here's another one for Lukeh,
+Lukeh likes flowers.
+
+00:44:20.820 --> 00:44:24.020
+We can add new... We can add new
+pins, etcetera, etcetera.
+
+00:44:24.070 --> 00:44:28.400
+So a simple little app, but it shows
+you, you know multiple modules
+
+00:44:28.450 --> 00:44:30.710
+running on the Node.
+
+00:44:31.870 --> 00:44:36.310
+Okay another app I wanted
+to show is an
+
+00:44:41.880 --> 00:44:46.090
+app called Warship, here we go.
+
+00:44:47.210 --> 00:44:51.680
+This is an app that uses jQuery
+and it also uses JQuery UI.
+
+00:44:52.540 --> 00:44:55.980
+If you look at the static typings here
+you see that we just reference
+
+00:44:56.030 --> 00:44:59.280
+the declaration files for jQuery
+and jQuery UI. If we go into
+
+00:44:59.330 --> 00:45:02.240
+our solution explorer, one thing
+that actually I haven't even
+
+00:45:02.290 --> 00:45:05.510
+gotten around to mentioning yet, if
+I just get rid of these guys here.
+
+00:45:06.540 --> 00:45:10.130
+Is that we automatically infer
+projects. So when you open a
+
+00:45:10.180 --> 00:45:15.780
+file pretty much anywhere, I closed
+2R5, sorry. Because Warship
+
+00:45:15.830 --> 00:45:19.130
+references jQuery and jQuery UI,
+you see that we automatically
+
+00:45:19.180 --> 00:45:23.680
+infer a project consisting of the Warship
+file, and the two declaration
+
+00:45:23.730 --> 00:45:27.480
+files, and the one that declares
+everything for the DOM.
+
+00:45:28.210 --> 00:45:30.810
+We do that by traversing all of the
+references that are in there,
+
+00:45:30.860 --> 00:45:34.100
+and that a module imports and exports,
+and then finding the entire
+
+00:45:34.150 --> 00:45:37.040
+app automatically. So you can sort
+of start anywhere and you
+
+00:45:37.090 --> 00:45:40.530
+automatically are in the right project
+context. Now if we look
+
+00:45:40.580 --> 00:45:44.710
+at jQuery, in fact one way
+to look at is just to
+
+00:45:45.980 --> 00:45:47.300
+type in $,
+
+00:45:48.520 --> 00:45:51.050
+that's the jQuery object you see
+that we get statement completion
+
+00:45:51.100 --> 00:45:53.960
+for all of the various things
+you can pass to it. Let's say
+
+00:45:54.010 --> 00:45:57.980
+$ of div. and then you see all
+of the jQuery methods like at
+
+00:45:58.030 --> 00:46:01.620
+class for example. Now we can actually
+go to the declaration
+
+00:46:01.670 --> 00:46:05.340
+of that. You'll see that we are
+now in the jQuery module and
+
+00:46:05.390 --> 00:46:07.780
+here's the at class method, in fact
+there are two of them, it's
+
+00:46:07.830 --> 00:46:10.810
+overloaded, and I can take different
+arguments. But this gives
+
+00:46:10.860 --> 00:46:15.020
+you the static types for jQuery.
+But then the really interesting
+
+00:46:15.070 --> 00:46:19.690
+thing is that jQuery UI builds
+on top of jQuery by adding new
+
+00:46:19.740 --> 00:46:21.130
+members to $.
+
+00:46:22.040 --> 00:46:27.660
+In fact we could look at $ of div.draggable.
+
+00:46:28.220 --> 00:46:31.830
+If we go to definition of that
+guy you'll note that that's in
+
+00:46:31.880 --> 00:46:36.160
+a different file, that's in jQuery
+UI, which declares additional
+
+00:46:36.210 --> 00:46:40.510
+members in the same interface.
+So in TypeScript's type system
+
+00:46:40.560 --> 00:46:45.450
+interfaces are open ended and multiple
+entities can contribute
+
+00:46:45.500 --> 00:46:49.450
+to an interface. That allows us
+to accurately model what very
+
+00:46:49.500 --> 00:46:52.990
+often happens in JavaScript, which
+is that one library builds
+
+00:46:53.040 --> 00:46:59.490
+on another by adding new members to its
+global object, or its representation.
+
+00:47:00.520 --> 00:47:02.210
+Okay, let's
+
+00:47:04.010 --> 00:47:04.770
+try to go
+
+00:47:06.630 --> 00:47:09.760
+here and just quickly compile
+the Warship app.
+
+00:47:10.800 --> 00:47:14.030
+Then let's try to run it.
+
+00:47:15.360 --> 00:47:19.270
+This is basically like battleships
+in here. I can, you know
+
+00:47:19.320 --> 00:47:23.140
+start shooting and let's see if I,
+oh yeah, oh well I got a couple
+
+00:47:23.190 --> 00:47:24.550
+of good hits in already.
+
+00:47:25.070 --> 00:47:28.270
+Basically you know you can
+have fun with that app.
+
+00:47:29.760 --> 00:47:34.450
+Okay last thing I wanted to show is
+the TypeScript compiler itself,
+
+00:47:35.140 --> 00:47:41.440
+which TypeScript is written in TypeScript.
+Since its open source
+
+00:47:41.490 --> 00:47:44.510
+we actually give you the entire
+source code for the compiler.
+
+00:47:44.560 --> 00:47:49.610
+Let me try to go load up some
+of it in compiler. We'll just
+
+00:47:49.660 --> 00:47:52.120
+grab a random file, AST.
+
+00:47:52.920 --> 00:47:55.950
+This so happens to be the file that
+defines the abstract syntax
+
+00:47:56.000 --> 00:48:00.600
+trees for everything. So we can
+go look at, here's the class
+
+00:48:00.650 --> 00:48:05.210
+that represents K statements in
+the compiler. You'll note that
+
+00:48:05.260 --> 00:48:09.060
+I just grab one file out of the
+compiler, but we have already
+
+00:48:09.110 --> 00:48:13.930
+inferred the entire solution for
+the compiler because we follow
+
+00:48:13.980 --> 00:48:17.390
+all the references. So if you go
+up here and you note that we
+
+00:48:17.440 --> 00:48:21.790
+referenced TypeScript.ts and if
+we go open that file here.
+
+00:48:21.840 --> 00:48:24.130
+You'll see that that's the main
+compiler file, which in turn
+
+00:48:24.180 --> 00:48:27.480
+references all sorts of other files,
+and by tracing those we
+
+00:48:27.530 --> 00:48:29.720
+automatically see the whole picture.
+
+00:48:30.580 --> 00:48:34.930
+The TypeScript compiler declares a
+class call TypeScript compiler.
+
+00:48:34.980 --> 00:48:38.460
+We could try to look it up. Here you
+see that the compiler instantiates
+
+00:48:38.510 --> 00:48:43.300
+a parser. So we can go look at
+a parser. The parser in turn
+
+00:48:43.350 --> 00:48:46.700
+instantiates a scanner, this is
+very nicely layered compiler.
+
+00:48:47.540 --> 00:48:51.750
+In the scanner there's a property
+called line, which is the current
+
+00:48:51.800 --> 00:48:54.620
+line number that the scanner is processing.
+
+00:48:55.590 --> 00:48:59.230
+Now we can find all references
+to line in here.
+
+00:49:00.100 --> 00:49:02.540
+Here you see that well there are
+a bunch of references in the
+
+00:49:02.590 --> 00:49:05.490
+scanner itself. But there are also
+some over in the parser that
+
+00:49:05.540 --> 00:49:07.520
+references that property.
+
+00:49:08.830 --> 00:49:12.360
+Now here in particular there's
+one interesting reference.
+
+00:49:12.410 --> 00:49:16.460
+If you look here we're referencing
+scanner.line, but above it
+
+00:49:16.510 --> 00:49:20.030
+we're also referencing a .line
+property on a different object
+
+00:49:20.080 --> 00:49:24.690
+called line call, that isn't related
+to scanner. Now let's say
+
+00:49:25.380 --> 00:49:30.710
+I wanted to rename line from the
+scanner. But I don't want to
+
+00:49:30.760 --> 00:49:34.870
+like rename all the other line
+properties in there. How can
+
+00:49:34.920 --> 00:49:39.590
+I tell which line is which, so to
+speak? That's very, very hard
+
+00:49:39.640 --> 00:49:42.520
+to do without static typing. But
+once you have static typing
+
+00:49:42.570 --> 00:49:45.560
+in place it's trivial. It's what
+the compiler does all day.
+
+00:49:46.410 --> 00:49:50.220
+So we could for example try to
+grab this parser here and put
+
+00:49:50.270 --> 00:49:51.420
+it down at the bottom.
+
+00:49:51.970 --> 00:49:56.590
+So we can see this code here.
+Here's our scanner.line.
+
+00:49:56.640 --> 00:50:00.020
+Here's the other reference to .line.
+Then let's go back to where
+
+00:50:00.070 --> 00:50:06.770
+line is declared in the scanner, up
+here. Now let's try to rename line.
+
+00:50:09.040 --> 00:50:12.080
+We'll instead call it line number.
+
+00:50:13.860 --> 00:50:17.870
+Now when I press enter, you see
+one of them renames but not the
+
+00:50:17.920 --> 00:50:21.150
+other, because we know which one
+we're talking about. So if
+
+00:50:21.200 --> 00:50:23.000
+I undo you can sort of see here,
+
+00:50:24.340 --> 00:50:27.670
+these guys change but this guy
+up here stays the same because
+
+00:50:27.720 --> 00:50:30.370
+it's a different property that so
+happens to have the same name.
+
+00:50:30.420 --> 00:50:33.830
+Now this is the kind of thing that
+makes very large JavaScript
+
+00:50:33.880 --> 00:50:37.440
+applications very hard to maintain.
+That's why Tooling really,
+
+00:50:37.490 --> 00:50:38.270
+really helps.
+
+00:50:39.600 --> 00:50:43.300
+Okay, final thing I want
+to show is actually that
+
+00:50:45.200 --> 00:50:47.220
+we can compile the compiler, with
+
+
+00:50:47.220 --> 00:50:47.720
+[Laughter]
+
+00:50:48.950 --> 00:50:53.130
+the compiler. I might go into the
+compiler directory and say
+
+00:50:53.180 --> 00:50:58.960
+compile TypeScript producing
+an output file out ts.js.
+
+00:50:59.600 --> 00:51:03.470
+Also generate a declarations file.
+
+00:51:04.030 --> 00:51:10.960
+We'll look at that. Then I want
+a compile TypeScript.ts, there.
+
+00:51:11.780 --> 00:51:15.150
+That's going to produce two files
+ts.js, which is the compiler
+
+00:51:15.200 --> 00:51:16.770
+itself and
+
+00:51:19.810 --> 00:51:23.640
+then it produces a declaration
+file for the compiler. So you
+
+00:51:23.690 --> 00:51:26.930
+see the compiler itself is one megabyte
+of JavaScript. Now you
+
+00:51:26.980 --> 00:51:29.330
+can take that JavaScript file and
+run it through your minifiers
+
+00:51:29.380 --> 00:51:32.750
+and all your other JavaScript tool
+chain. But we've also produced
+
+00:51:32.800 --> 00:51:36.860
+a declaration file that is basically
+a summary of the external
+
+00:51:36.910 --> 00:51:40.490
+interface of the compiler, if
+you will. If we start that up
+
+00:51:45.060 --> 00:51:49.280
+you'll see that, let's grab this
+guy and put it up here, so we
+
+00:51:49.330 --> 00:51:52.190
+can see the whole file,
+get rid of this guy.
+
+00:51:52.930 --> 00:51:56.830
+Here you see the file that we've
+generated is basically a summary
+
+00:51:56.880 --> 00:52:00.380
+of the entire compiler. In here
+you see again all of the ASTs
+
+00:52:00.430 --> 00:52:03.370
+and whatever. But the code bodies
+are gone. Now you can take
+
+00:52:03.420 --> 00:52:07.160
+this declaration file and you can
+now continue the next level
+
+00:52:07.210 --> 00:52:09.690
+of the chain of your modular development.
+Where you just treat
+
+00:52:09.740 --> 00:52:13.720
+the compiler as some component
+that you're already done with,
+
+00:52:13.770 --> 00:52:17.140
+now you're just taking its external
+interface. So you can see
+
+00:52:17.190 --> 00:52:20.180
+how we can automatically generate
+these declaration files or
+
+00:52:20.230 --> 00:52:24.260
+you can hand author them if you're
+trying to encapsulate a, or
+
+00:52:24.310 --> 00:52:27.970
+describe an already existing
+JavaScript library.
+
+00:52:29.770 --> 00:52:38.480
+Okay, so what's included in TypeScript
+is an open source compiler
+
+00:52:38.530 --> 00:52:42.100
+and language service all
+written in TypeScript.
+
+00:52:42.670 --> 00:52:47.400
+We include Tooling for Visual Studio.
+That gives you a language
+
+00:52:47.450 --> 00:52:51.400
+service in VS. But like I said all
+of the services that underpin
+
+00:52:51.450 --> 00:52:54.670
+that are open source and anyone could
+use those to produce their
+
+00:52:54.720 --> 00:52:58.520
+own development experiences. We have
+a browser host to playground
+
+00:52:58.570 --> 00:52:59.800
+that you saw me play with.
+
+00:53:00.490 --> 00:53:04.900
+Lots of libraries with static typings
+of the DOM, jQuery, Node,
+
+00:53:04.950 --> 00:53:08.870
+etcetera, etcetera, then of course
+lots of samples and also a
+
+00:53:08.920 --> 00:53:10.960
+formal Language Specification.
+
+00:53:13.440 --> 00:53:18.040
+So as I started out by saying application
+scale JavaScript development
+
+00:53:18.090 --> 00:53:22.760
+is hard. But as I think you've seen
+TypeScript makes it easier.
+
+00:53:23.370 --> 00:53:26.370
+Please check it out at typescriptlang.org
+and let us know what you think. 
+
+00:53:26.500 --> 00:53:27.500
+Thank you.
+
+

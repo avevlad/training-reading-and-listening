@@ -8,12 +8,32 @@ export default [
     subtitle: "[DownSub.com] Learn English with Movies and TV! _ 5 Powerful Tips from a Master Teacher _ Rachel’s English.srt",
   },
   {
+    link: "https://www.youtube.com/watch?v=XfAMirWVpjQ",
+    subtitle: "[DownSub.com] Do I speak slowly_ [How to understand native English speakers].srt",
+  },
+  {
     link: "https://www.youtube.com/watch?v=TGmhnWaByXE",
     subtitle: "[DownSub.com] Samsung Galaxy S10 Plus review_ the anti-iPhone.srt",
   },
   {
-    link: "https://www.youtube.com/watch?v=XfAMirWVpjQ",
-    subtitle: "[DownSub.com] Do I speak slowly_ [How to understand native English speakers].srt",
+    link: "https://www.youtube.com/watch?v=9hekJsCOHLU",
+    subtitle: "[DownSub.com] Differentiating Instruction_ A Guide for Teaching English-Language Learners.srt",
+  },
+  {
+    link: "https://www.youtube.com/watch?v=eX2PXjj-KDk",
+    subtitle: "Anders-Hejlsberg-Introducing-TypeScript_en.vtt",
+  },
+  {
+    link: "https://www.youtube.com/watch?v=gLglQ5-Q9FE",
+    subtitle: "[DownSub.com] Harry Potter and The Methods Of Rationality_ Chapter 1.srt",
+  },
+  {
+    link: "https://www.youtube.com/watch?v=tMPPGQCT8mE",
+    subtitle: "[DownSub.com] How to Bunnyhop a MTB - a tutorial.srt",
+  },
+  {
+    link: "https://www.youtube.com/watch?v=kkSBXBSOyoc",
+    subtitle: "[DownSub.com] 2 tricky vowel sounds in British and American English - AH and UH.srt",
   },
   {
     link: "https://www.youtube.com/watch?v=o8NPllzkFhE",

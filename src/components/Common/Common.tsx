@@ -16,12 +16,12 @@ export default function Common() {
   useMultiKeyPressCallback(['Shift', 'J'], () => {
     toggleOpenListModal();
   });
-  useMultiKeyPressCallback(['Shift', 'R'], () => {
-    const x = confirm("Clear LocalStorage?")
-    if (x) {
-      onTaskClear(undefined);
-    }
-  });
+  // useMultiKeyPressCallback(['Shift', 'R'], () => {
+  //   const x = confirm("Clear LocalStorage?")
+  //   if (x) {
+  //     onTaskClear(undefined);
+  //   }
+  // });
 
   return (
     <Tasks/>

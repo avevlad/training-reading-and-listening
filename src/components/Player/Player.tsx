@@ -22,29 +22,21 @@ type CallbackFunction = () => void;
 
 
 function Player(props: PlayerProps) {
-  // const renderCountRef = useRef(0);
-  // if (renderCountRef.current > 7) {
-  //   console.log("RENDER:", ++renderCountRef.current);
-  // }
   const id = props.match.params.id;
   const {
     onFetchSubtitlesFromTasksStore,
   } = useActions((a: Actions<IStore>) => ({
-    setIsOpenListModal: a.app.setIsOpenListModal,
     onFetchSubtitlesFromTasksStore: a.player.fetchSubtitlesFromTasksStore,
   }));
 
   const timeoutRef = useRef(0);
-  const timeoutCountRef = useRef(0);
-  const prevPlayerStateRef = useRef(-1);
+  const [isSubtitleDisabled, setIsSubtitleDisabled] = useState(true);
   const [currentTime, setCurrentTime] = useState(0);
-  const [updateValue, setUpdateValue] = useState(0);
-  const [sbCurrentIndex, setSbCurrentIndex] = useState(-1);
+  const [sbCurrentIndex, setSbCurrentIndex] = useState(0);
   const [sbIsShow, setSbIsShow] = useState(false);
   const currentTask = useStore((s: State<IStore>) => s.getTaskById(Number(id)), [id]);
   const tasksState = useStore((s: State<IStore>) => s.tasks, [id]);
   const playerState = useStore((s: State<IStore>) => s.player, [id]);
-  const subtitlesSize = playerState.subtitles.length;
 
   useEffect(() => {
     if (tasksState.isFetching) {
@@ -61,8 +53,8 @@ function Player(props: PlayerProps) {
   const videoId = get(currentTask, 'url');
 
   const {video, player} = useYoutube(videoId, {
-    width: '100%',
-    height: '100%',
+    width: 600,
+    height: 200,
     playerVars: {
       // controls: 0,
       start: 1,
@@ -71,18 +63,15 @@ function Player(props: PlayerProps) {
       disablekb: 1,
       modestbranding: 3,
     },
-    // events: {
-    //   onStateChange: ({target}) => update(target),
-    // },
+    events: {
+      onReady: ({target}) => {
+        target.setVolume(100);
+      },
+      onStateChange: () => {
+        updateSubtitleCurrentIndex();
+      }
+    },
   });
-
-  // useEffect(() => {
-  //   if (!player) {
-  //     return;
-  //   }
-  //   update(player);
-  // }, [updateValue]);
-
 
   // Space key
   useMultiKeyPressCallback([' '], () => {
@@ -114,74 +103,51 @@ function Player(props: PlayerProps) {
   useMultiKeyPressCallback(['0'], () => handleNumberKey('0'));
 
 
-  /**
-   * deprecated
-   */
-  function update(yt: YT.Player) {
-    // const currentTime = yt.getCurrentTime();
-    if (playerState.subtitles.length === 0 || !player) {
-      return;
-    }
-    const state = player.getPlayerState();
-    const x = 400;
-
-    if (state === YT.PlayerState.PLAYING) {
-      if (
-        prevPlayerStateRef.current !== YT.PlayerState.PLAYING
-        && prevPlayerStateRef.current !== YT.PlayerState.PAUSED
-      ) {
-        console.log('%c PLAYING', 'background: #222; color: #bada55');
-        console.log("start video");
-        const newSb = playerState.subtitles[0];
-        setSbCurrentIndex(0);
-        timeoutCountRef.current = newSb.end - x;
-        console.log("timeoutCountRef.current", timeoutCountRef.current);
-        console.time('kk');
-
-        setTimeout(() => {
-          setUpdateValue(updateValue + 1);
-          console.timeEnd('kk');
-          console.log('%c go next !', 'background: red; color: #fff', timeoutCountRef.current);
-        }, timeoutCountRef.current);
-        console.log('%c PLAYING END', 'background: #222; color: #bada55');
-
-      } else if (
-        prevPlayerStateRef.current === YT.PlayerState.PLAYING
-      ) {
-        console.log('%c NEXT SUB', 'background: #222; color: #bada55');
-        console.log("sbCurrentIndex = ", sbCurrentIndex);
-        console.log("timeoutCountRef.current", timeoutCountRef.current);
-        const newIndex = sbCurrentIndex + 1;
-        setSbCurrentIndex(newIndex);
-        const newSb = playerState.subtitles[newIndex];
-        timeoutCountRef.current = newSb.end - timeoutCountRef.current - x;
-
-        console.time('kk');
-        setTimeout(() => {
-          setUpdateValue(updateValue + 1);
-          console.log('%c go next __ !', 'background: red; color: #fff', timeoutCountRef.current);
-          console.timeEnd('kk');
-        }, timeoutCountRef.current);
-        console.log('%c NEXT SUB END', 'background: #222; color: #bada55');
-      }
-    } else if (state === YT.PlayerState.PAUSED) {
-
-      console.log("PAUSED");
-    } else if (state === YT.PlayerState.BUFFERING) {
-      console.log('BUFFERING');
-    } else {
-      // console.log("state = ", state);
-    }
-    prevPlayerStateRef.current = state;
-  }
-
-  useInterval(() => {
+  useEffect(() => {
     if (!player) return;
-    setCurrentTime(player.getCurrentTime());
-  }, 300);
 
-  function findCurrentSubtitleIndex(time: number) {
-    console.log("time = ", time);
+    let x: number;
+    console.log("Run update = ", secondsToMilliseconds(player.getCurrentTime()));
+
+    function update() {
+      if (!player) return;
+
+      const sb = playerState.subtitles;
+      const size = sb.length;
+      const currentSb = sb[sbCurrentIndex];
+      const ct = secondsToMilliseconds(player.getCurrentTime());
+      const fixCt = ct + 50;
+
+      // console.log("ct = ", ct);
+      // console.log("currentSb = ", currentSb);
+      // console.log("sbCurrentIndex = ", sbCurrentIndex);
+      // console.log("secondsToMilliseconds.........");
+
+
+      if ((size - 1) <= sbCurrentIndex) {
+        return;
+      }
+
+      if (fixCt > currentSb.end) {
+        const newIndex = sbCurrentIndex + 1;
+        console.log("set new index", newIndex);
+        setSbCurrentIndex(newIndex);
+        return;
+      }
+
+      x = requestAnimationFrame(update);
+    }
+
+    update();
+
+    return () => {
+      if (!x) return;
+
+      cancelAnimationFrame(x);
+    }
+  }, [player, sbCurrentIndex]);
+
+  function findCurrentSubtitleIndex(time: number): number {
     for (let i = 0; i < playerState.subtitles.length; i++) {
       const videoElement = playerState.subtitles[i];
       if (time >= videoElement.start && time <= videoElement.end) {
@@ -190,13 +156,22 @@ function Player(props: PlayerProps) {
         return i;
       }
     }
+
+    return 0;
+  }
+
+  function updateSubtitleCurrentIndex() {
+    if (!player) return;
+
+    const ct = secondsToMilliseconds(player.getCurrentTime());
+
+    const i = findCurrentSubtitleIndex(ct);
+    setSbCurrentIndex(i);
   }
 
   function checkAndSeek(next: boolean) {
     if (!player) return;
-    console.log("......................", next ? 'next' : 'prev');
     const plainCurrentTime = player.getCurrentTime();
-    console.log("plainCurrentTime = ", plainCurrentTime);
     const currentTime = secondsToMilliseconds(plainCurrentTime);
     const index = findCurrentSubtitleIndex(currentTime);
 
@@ -217,7 +192,7 @@ function Player(props: PlayerProps) {
     } else {
       const diff = currentTime - currentSb.start;
       if (diff < 800 && prevSb) {
-        console.log("Prev", prevSb);
+        console.log("Prev", index - 1, prevSb);
         player.seekTo((prevSb.start) / 1000, true);
       }
       if (diff > 800) {
@@ -238,6 +213,9 @@ function Player(props: PlayerProps) {
   }
 
   function SubtitlesDebug() {
+    if (isSubtitleDisabled) {
+      return null;
+    }
     const current = playerState.subtitles[sbCurrentIndex];
     const next = playerState.subtitles[sbCurrentIndex + 1];
 
@@ -270,19 +248,58 @@ function Player(props: PlayerProps) {
     )
   }
 
+  function SubtitlesDebugFullText() {
+    if (!isSubtitleDisabled) {
+      return null;
+    }
+
+    const subtitles = playerState.subtitles;
+    const plainText = subtitles.map((item) => item.text).join(' ');
+    const textList = plainText.split('.');
+
+
+    return (
+      <div className={styles.SubtitlesDebugFullText}>
+        {textList.map((item) => {
+          return <p>{item}.</p>;
+        })}
+      </div>
+    )
+  }
+
+  if (props.location.search) {
+    const items = playerState.subtitles.map((item, i) => {
+      return (
+        <div key={i}>
+          {item.text}
+        </div>
+      )
+    });
+    return (
+      <div style={{padding: '40px 40px', backgroundColor: '#fff', lineHeight: '25px', fontSize: 15}}>
+        {items}
+      </div>
+    )
+  }
 
   return (
-    <div>
-      <div style={{height: '100vh'}}>
+    <div className={styles.root}>
+      <div>
         {video}
       </div>
-      <Button onClick={() => player!.playVideo()} text="play"/>
-      <Button onClick={() => player!.pauseVideo()} text="pause"/>
-      <Button onClick={() => player!.setVolume(70)} text="set vol"/>
+      <div className={styles.debugButtons}>
+        <Button onClick={() => player!.playVideo()} text="play"/>
+        <Button onClick={() => player!.pauseVideo()} text="pause"/>
+        <Button onClick={() => player!.setVolume(10)} text="set vol"/>
+        <Button onClick={() => player!.seekTo(50, true)} text="go to 50s"/>
+        <Button onClick={() => localStorage.removeItem('app_items')} text="Clear LS"/>
+        {/*<Button href text="go to 50s"/>*/}
+      </div>
       <div className={styles.container}>
         <div>
         </div>
         <SubtitlesDebug/>
+        <SubtitlesDebugFullText/>
       </div>
     </div>
   )
