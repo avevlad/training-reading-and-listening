@@ -3,7 +3,7 @@ import { Actions, State, useActions, useStore } from "easy-peasy";
 import { IStore } from "../../store";
 import useYoutube from "../../hooks/useYoutube";
 import { Redirect } from "react-router";
-import { get } from 'lodash';
+import { get, range } from 'lodash';
 import { Button } from '@blueprintjs/core';
 // import useMultiKeyPressCallback from "../../hooks/useMultiKeyPressCallback";
 
@@ -88,26 +88,17 @@ function Player(props: PlayerProps) {
     }
   });
 
-  /**
-   useMultiKeyPressCallback(['ArrowLeft'], () => {
+  useMultiKeyPress(['left'], () => {
     if (!player) return;
     checkAndSeek(false);
   });
-   useMultiKeyPressCallback(['ArrowRight'], () => {
+  useMultiKeyPress(['right'], () => {
     if (!player) return;
     checkAndSeek(true);
   });
-   useMultiKeyPressCallback(['1'], () => handleNumberKey('1'));
-   useMultiKeyPressCallback(['2'], () => handleNumberKey('2'));
-   useMultiKeyPressCallback(['3'], () => handleNumberKey('3'));
-   useMultiKeyPressCallback(['4'], () => handleNumberKey('4'));
-   useMultiKeyPressCallback(['5'], () => handleNumberKey('5'));
-   useMultiKeyPressCallback(['6'], () => handleNumberKey('6'));
-   useMultiKeyPressCallback(['7'], () => handleNumberKey('7'));
-   useMultiKeyPressCallback(['8'], () => handleNumberKey('8'));
-   useMultiKeyPressCallback(['9'], () => handleNumberKey('9'));
-   useMultiKeyPressCallback(['0'], () => handleNumberKey('0'));
-   **/
+  
+  const numKeys = range(0, 10).map((__) => String(__));
+  useMultiKeyPress(numKeys, handleNumberKey);
 
   useEffect(() => {
     if (!player) return;
@@ -208,8 +199,8 @@ function Player(props: PlayerProps) {
     }
   }
 
-  function handleNumberKey(k: string) {
-    const num = Number(k);
+  function handleNumberKey(e: KeyboardEvent) {
+    const num = Number(e.key);
     if (!player) return;
 
     const x = (player.getDuration() / 10) * num;
