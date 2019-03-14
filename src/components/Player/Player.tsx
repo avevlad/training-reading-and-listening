@@ -96,7 +96,7 @@ function Player(props: PlayerProps) {
     if (!player) return;
     checkAndSeek(true);
   });
-  
+
   const numKeys = range(0, 10).map((__) => String(__));
   useMultiKeyPress(numKeys, handleNumberKey);
 
