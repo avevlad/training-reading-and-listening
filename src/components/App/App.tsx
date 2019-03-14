@@ -22,10 +22,10 @@ class App extends Component {
       <StoreProvider store={store}>
         <Router basename={process.env.PUBLIC_URL}>
           <div>
+            <Common/>
             <Route exact path="/" component={Home}/>
             <Route path="/play/:id" component={Player}/>
             <Route exact path="/play" component={Player}/>
-            <Common/>
           </div>
         </Router>
       </StoreProvider>

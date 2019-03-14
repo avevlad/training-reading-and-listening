@@ -2,7 +2,7 @@ import React from "react";
 import { Actions, useActions } from "easy-peasy";
 import { IStore } from "../../store";
 import Tasks from "../Tasks/Tasks";
-import useMultiKeyPressCallback from "../../hooks/useMultiKeyPressCallback";
+import useMultiKeyPress from "../../hooks/use-multi-keypress";
 
 export default function Common() {
   const {
@@ -13,17 +13,20 @@ export default function Common() {
     onTaskClear: a.tasks.deleteAll,
   }));
 
-  useMultiKeyPressCallback(['Shift', 'J'], () => {
+  useMultiKeyPress(['shift+j', 'ctrl+k'], () => {
     toggleOpenListModal();
   });
-  // useMultiKeyPressCallback(['Shift', 'R'], () => {
-  //   const x = confirm("Clear LocalStorage?")
-  //   if (x) {
-  //     onTaskClear(undefined);
-  //   }
-  // });
+
+  useMultiKeyPress(['shift+r'], () => {
+    const x = confirm("Clear LocalStorage?");
+    if (x) {
+      onTaskClear(undefined);
+    }
+  });
 
   return (
-    <Tasks/>
+    <div>
+      <Tasks/>
+    </div>
   );
 }

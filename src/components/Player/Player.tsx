@@ -5,12 +5,13 @@ import useYoutube from "../../hooks/useYoutube";
 import { Redirect } from "react-router";
 import { get } from 'lodash';
 import { Button } from '@blueprintjs/core';
-import useMultiKeyPressCallback from "../../hooks/useMultiKeyPressCallback";
+// import useMultiKeyPressCallback from "../../hooks/useMultiKeyPressCallback";
 
 import styles from './Player.module.css';
 import useInterval from '../../hooks/useInterval';
 import { func } from "prop-types";
 import secondsToMilliseconds from '../../utils/seconds-to-milliseconds';
+import useMultiKeyPress from "../../hooks/use-multi-keypress";
 
 interface PlayerProps {
   [key: string]: any;
@@ -74,7 +75,11 @@ function Player(props: PlayerProps) {
   });
 
   // Space key
-  useMultiKeyPressCallback([' '], () => {
+  useMultiKeyPress(['space'], (e) => {
+    if (e.preventDefault) {
+      e.preventDefault();
+    }
+
     if (!player) return;
     if (player.getPlayerState() === 1) {
       player.pauseVideo();
@@ -83,25 +88,26 @@ function Player(props: PlayerProps) {
     }
   });
 
-  useMultiKeyPressCallback(['ArrowLeft'], () => {
+  /**
+   useMultiKeyPressCallback(['ArrowLeft'], () => {
     if (!player) return;
     checkAndSeek(false);
   });
-  useMultiKeyPressCallback(['ArrowRight'], () => {
+   useMultiKeyPressCallback(['ArrowRight'], () => {
     if (!player) return;
     checkAndSeek(true);
   });
-  useMultiKeyPressCallback(['1'], () => handleNumberKey('1'));
-  useMultiKeyPressCallback(['2'], () => handleNumberKey('2'));
-  useMultiKeyPressCallback(['3'], () => handleNumberKey('3'));
-  useMultiKeyPressCallback(['4'], () => handleNumberKey('4'));
-  useMultiKeyPressCallback(['5'], () => handleNumberKey('5'));
-  useMultiKeyPressCallback(['6'], () => handleNumberKey('6'));
-  useMultiKeyPressCallback(['7'], () => handleNumberKey('7'));
-  useMultiKeyPressCallback(['8'], () => handleNumberKey('8'));
-  useMultiKeyPressCallback(['9'], () => handleNumberKey('9'));
-  useMultiKeyPressCallback(['0'], () => handleNumberKey('0'));
-
+   useMultiKeyPressCallback(['1'], () => handleNumberKey('1'));
+   useMultiKeyPressCallback(['2'], () => handleNumberKey('2'));
+   useMultiKeyPressCallback(['3'], () => handleNumberKey('3'));
+   useMultiKeyPressCallback(['4'], () => handleNumberKey('4'));
+   useMultiKeyPressCallback(['5'], () => handleNumberKey('5'));
+   useMultiKeyPressCallback(['6'], () => handleNumberKey('6'));
+   useMultiKeyPressCallback(['7'], () => handleNumberKey('7'));
+   useMultiKeyPressCallback(['8'], () => handleNumberKey('8'));
+   useMultiKeyPressCallback(['9'], () => handleNumberKey('9'));
+   useMultiKeyPressCallback(['0'], () => handleNumberKey('0'));
+   **/
 
   useEffect(() => {
     if (!player) return;
@@ -193,11 +199,11 @@ function Player(props: PlayerProps) {
       const diff = currentTime - currentSb.start;
       if (diff < 800 && prevSb) {
         console.log("Prev", index - 1, prevSb);
-        player.seekTo((prevSb.start) / 1000, true);
+        player.seekTo(((prevSb.start - 200) / 1000), true);
       }
       if (diff > 800) {
         console.log("Current", currentSb);
-        player.seekTo((currentSb.start) / 1000, true);
+        player.seekTo(((currentSb.start - 200) / 1000), true);
       }
     }
   }
@@ -260,8 +266,8 @@ function Player(props: PlayerProps) {
 
     return (
       <div className={styles.SubtitlesDebugFullText}>
-        {textList.map((item) => {
-          return <p>{item}.</p>;
+        {textList.map((item, i) => {
+          return <p key={i}>{item}.</p>;
         })}
       </div>
     )
