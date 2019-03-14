@@ -2,7 +2,7 @@ import React from "react";
 import { Actions, useActions } from "easy-peasy";
 import { IStore } from "../../store";
 import Tasks from "../Tasks/Tasks";
-import useMultiKeyPress from "../../hooks/use-multi-keypress";
+import useMultiKeyPress from "../../hooks/useMultiKeyPress";
 
 export default function Common() {
   const {

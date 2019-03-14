@@ -11,7 +11,7 @@ import styles from './Player.module.css';
 import useInterval from '../../hooks/useInterval';
 import { func } from "prop-types";
 import secondsToMilliseconds from '../../utils/seconds-to-milliseconds';
-import useMultiKeyPress from "../../hooks/use-multi-keypress";
+import useMultiKeyPress from "../../hooks/useMultiKeyPress";
 
 interface PlayerProps {
   [key: string]: any;
