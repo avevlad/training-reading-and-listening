@@ -1,15 +1,17 @@
 import { Action } from "easy-peasy";
 
-interface IAppState {
+interface IKeyboardShortcuts {
+  isOpen: boolean,
+  set: Action<IKeyboardShortcuts, boolean>,
+  toggle: Action<IKeyboardShortcuts, undefined>,
+}
+
+export interface IAppStore {
   isOpenListModal: boolean,
+  setIsOpenListModal: Action<IAppStore, boolean>,
+  toggleOpenListModal: Action<IAppStore, undefined>,
+  keyboardShortcuts: IKeyboardShortcuts
 }
-
-export interface IAppActions {
-  setIsOpenListModal: Action<IAppState, boolean>,
-  toggleOpenListModal: Action<IAppState, undefined>,
-}
-
-export type IAppStore = IAppState & IAppActions;
 
 const store: IAppStore = {
   isOpenListModal: false,
@@ -18,7 +20,16 @@ const store: IAppStore = {
   },
   toggleOpenListModal: (state) => {
     state.isOpenListModal = !state.isOpenListModal
-  }
+  },
+  keyboardShortcuts: {
+    isOpen: false,
+    set: (state, payload) => {
+      state.isOpen = payload
+    },
+    toggle: (state) => {
+      state.isOpen = !state.isOpen
+    }
+  },
 };
 
 export default store;
