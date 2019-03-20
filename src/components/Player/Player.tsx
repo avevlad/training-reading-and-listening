@@ -6,7 +6,26 @@ import { Redirect } from "react-router";
 import { get, range } from 'lodash';
 import { Button } from '@blueprintjs/core';
 // import useMultiKeyPressCallback from "../../hooks/useMultiKeyPressCallback";
-
+// Webstorm sloooooooooow :(
+// test
+// testdsddsdsddas
+// test dsds dsd dsdas
+// test dsds dsd dsdas
+// test dsds dsd dsdas
+// test dsds dsd dsdas
+// test dsds dsd dsdas
+// test dsds dsd dsdas
+// test dsds dsd dsdas
+// test dsds dsd dsdas
+// test dsds dsd dsdas
+// test dsds dsd dsdas
+// test dsds dsd dsdas
+// test dsds dsd dsdas
+// test dsds dsd dsdas  
+// test
+// test
+// test
+// testdsd dsaw
 import styles from './Player.module.css';
 import useInterval from '../../hooks/useInterval';
 import { func } from "prop-types";
