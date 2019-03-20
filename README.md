@@ -5,6 +5,7 @@ sed -i '' "s/console.log(chalk.green('Compiled successfully!'))/console.log('Tim
 ```
 
 Find: `console.log(chalk.green('Compiled successfully!'))`
+
 Replace: `console.log('Time:', chalk.green(stats.endTime - stats.startTime), 'ms')`
 
 File: `./node_modules/react-dev-utils/WebpackDevServerUtils.js` 
