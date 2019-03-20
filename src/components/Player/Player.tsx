@@ -3,9 +3,15 @@ import { Actions, State, useActions, useStore } from "easy-peasy";
 import { IStore } from "../../store";
 import useYoutube from "../../hooks/useYoutube";
 import { Redirect } from "react-router";
-import { get, range } from 'lodash';
+import { get, range, after } from 'lodash';
 import { Button } from '@blueprintjs/core';
 // import useMultiKeyPressCallback from "../../hooks/useMultiKeyPressCallback";
+// dsd dsdsd dsdsdsdsdss ds
+// 123 dsad3dsd dsвыdsd dsds  ds dsds dsd dsds dsds ds2 ds ds  dsa dsd
+// 123 dsad3dsdвыв dsdsd dsds  ds dsds dsd dsds dsds ds2 ds ds  dsa dsd
+// 123 dsad3dsdвыв dsdsd dsds  ds dsds dsd dsds dsds ds2 ds ds  dsa dsd
+/// 123dsd dsds dsds  dsds dsds dsdsd  dsds d sds  dsds  dsd ds d dsds
+
 
 import styles from './Player.module.css';
 import useInterval from '../../hooks/useInterval';
@@ -18,6 +24,7 @@ interface PlayerProps {
 }
 
 const jj = JSON.stringify;
+const jj2 = JSON.stringify;
 
 type CallbackFunction = () => void;
 

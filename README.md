@@ -1,14 +1,14 @@
 ## Support compiled time
 
 ```
-sed -i '' "s/console.log(chalk.green('Compiled successfully\!'))/console.log('Time:', chalk.green(stats.endTime - stats.startTime), 'ms')/g" ./node_modules/react-dev-utils/WebpackDevServerUtils.js
+sed -i '' "s/console.log(chalk.green('Compiled successfully\!'))/console.log('Time:', chalk.green(stats.endTime - stats.startTime), 'ms')/g" ./node_modules/react-scripts/node_modules/react-dev-utils/WebpackDevServerUtils.js
 ```
 
 Find: `console.log(chalk.green('Compiled successfully!'))`
 
 Replace on: `console.log('Time:', chalk.green(stats.endTime - stats.startTime), 'ms')`
 
-File: `./node_modules/react-dev-utils/WebpackDevServerUtils.js` 
+File: `./node_modules/react-scripts/node_modules/react-dev-utils/WebpackDevServerUtils.js` 
 
 --------
 
