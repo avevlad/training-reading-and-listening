@@ -1,3 +1,9 @@
+## Support compiled time
+
+```
+sed -i '' "s/console.log(chalk.green('Compiled successfully!'))/console.log('Time:', chalk.green(stats.endTime - stats.startTime), 'ms')/g" ./node_modules/react-dev-utils/WebpackDevServerUtils.js
+```
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
