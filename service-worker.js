@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/training-reading-and-listening/precache-manifest.d021d674421ea5443ee71f0764b169e9.js"
+  "/training-reading-and-listening/precache-manifest.7c73f7ee4d629196544eb467d341e474.js"
 );
 
 workbox.clientsClaim();
