@@ -4,6 +4,7 @@ import { IStore } from "../../store";
 import Tasks from "../Tasks/Tasks";
 import useMultiKeyPress from "../../hooks/useMultiKeyPress";
 import { KeyboardShortcutsDialog } from "../KeyboardShortcuts/KeyboardShortcutsDialog";
+import { useTheme } from "../../themes/context";
 
 export default function Common() {
   const {
@@ -16,7 +17,13 @@ export default function Common() {
     onTaskClear: a.tasks.deleteAll,
   }));
 
+  const theme = useTheme();
+
   const isOpenKeyboardShortcutsDialog = useStore((s: State<IStore>) => s.app.keyboardShortcuts.isOpen);
+
+  useMultiKeyPress(['shift+d'], () => {
+    theme.toggle();
+  });
 
   useMultiKeyPress(['shift+j', 'ctrl+k'], () => {
     toggleOpenListModal();

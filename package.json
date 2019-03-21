@@ -5,6 +5,8 @@
   "homepage": "https://avevlad.github.io/training-reading-and-listening",
   "dependencies": {
     "@blueprintjs/core": "^3.13.0",
+    "@emotion/core": "^10.0.9",
+    "@emotion/styled": "^10.0.9",
     "@types/jest": "24.0.5",
     "@types/lodash": "^4.14.121",
     "@types/node": "11.9.4",
@@ -13,7 +15,9 @@
     "@types/react-router-dom": "^4.3.1",
     "@types/youtube": "0.0.35",
     "axios": "^0.18.0",
+    "deepmerge": "^3.2.0",
     "easy-peasy": "^1.14.0",
+    "emotion-theming": "^10.0.9",
     "lodash": "^4.17.11",
     "mousetrap": "^1.6.3",
     "react": "^16.8.2",
